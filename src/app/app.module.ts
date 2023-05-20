@@ -8,6 +8,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { FooterComponent } from './footer/footer.component';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BuclesComponent } from './bucles/bucles.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BotonesComponent,
     FormularioComponent,
     FooterComponent,
-    AsideMenuComponent
+    AsideMenuComponent,
+    BuclesComponent
   ],
   imports: [
     BrowserModule,
