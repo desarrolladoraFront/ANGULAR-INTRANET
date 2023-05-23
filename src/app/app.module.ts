@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BuclesComponent } from './bucles/bucles.component';
+import { SwitchComponent } from './switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BuclesComponent } from './bucles/bucles.component';
     FormularioComponent,
     FooterComponent,
     AsideMenuComponent,
-    BuclesComponent
+    BuclesComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,
