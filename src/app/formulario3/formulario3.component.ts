@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-formulario3',
@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./formulario3.component.css']
 })
 export class Formulario3Component {
-  name = new FormControl('');
-  email = new FormControl('');
+  name = new FormControl('', Validators.required);
+  email = new FormControl('', [Validators.required, Validators.email]);
 
 }
