@@ -1,5 +1,5 @@
 <div class="card">
-    <form (ngSubmit)="procesar()">
+    <form (ngSubmit)="procesar()" #formContact="ngForm">
         <div class="card-body">
             <label class="form-label">
                 Nombre:
@@ -20,10 +20,13 @@
             <div class="alert alert-danger mt-2" [hidden]="edad.valid || edad.pristine">
                 La edad es obligatoria
             </div>
-            
-            <button class="btn btn-primary mt-4">
+ 
+            <!--<button class="btn btn-primary mt-4" [disabled]="!name.valid || edad.invalid">  De esta forma se hace la validación, pero con pocos inputs, en caso de tener un conjunto de muchos inputs, mejor haces la validación en el formulario.-->
+            <button class="btn btn-primary mt-4" [disabled]="formContact.invalid">
                 Enviar
             </button>
         </div>
     </form>
 </div>
+
+{{formContact.valid}}
