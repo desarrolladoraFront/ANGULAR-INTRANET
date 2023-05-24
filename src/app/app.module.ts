@@ -10,6 +10,9 @@ import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BuclesComponent } from './bucles/bucles.component';
 import { SwitchComponent } from './switch/switch.component';
+import { Formulario2Component } from './formulario2/formulario2.component';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,12 @@ import { SwitchComponent } from './switch/switch.component';
     FooterComponent,
     AsideMenuComponent,
     BuclesComponent,
-    SwitchComponent
+    SwitchComponent,
+    Formulario2Component
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
