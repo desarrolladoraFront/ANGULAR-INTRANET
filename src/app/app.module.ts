@@ -3,20 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { PagesModule } from './pages/pages.module';
 
-
-import { DirectorioDeExtensionesComponent } from './directorio-de-extensiones/directorio-de-extensiones.component';
+import { NopageFoundComponent } from './nopage.found/nopage.found.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DirectorioDeExtensionesComponent
+    NopageFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthRoutingModule,
+    PagesModule,
+    AppRoutingModule
   ],
+  exports:[RouterModule],
+
   providers: [],
   bootstrap: [AppComponent],
 })
