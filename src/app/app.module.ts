@@ -10,10 +10,11 @@ import { NopageFoundComponent } from './nopage.found/nopage.found.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    NopageFoundComponent
+    NopageFoundComponent,
   ],
   imports: [
     BrowserModule,

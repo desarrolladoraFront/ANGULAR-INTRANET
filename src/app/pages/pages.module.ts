@@ -6,6 +6,11 @@ import { DirectorioDeExtensionesComponent } from './directorio-de-extensiones/di
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { ComercialComponent } from './comercial/comercial.component';
+import { CotizadorComponent } from './cotizador/cotizador.component';
+import { ListaDePreciosComponent } from './lista-de-precios/lista-de-precios.component';
+import { EntregasADomicilioComponent } from './entregas-a-domicilio/entregas-a-domicilio.component';
+import { ECommerceComponent } from './e-commerce/e-commerce.component';
 
 
 
@@ -14,7 +19,12 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     UsersComponent,
     DirectorioDeExtensionesComponent,
-    PagesComponent
+    PagesComponent,
+    ComercialComponent,
+    CotizadorComponent,
+    ListaDePreciosComponent,
+    EntregasADomicilioComponent,
+    ECommerceComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +33,7 @@ import { SharedModule } from '../shared/shared.module';
   ], 
   exports: [
     DashboardComponent,
+    ComercialComponent,
     UsersComponent,
     DirectorioDeExtensionesComponent,
   ]
