@@ -1,88 +1,114 @@
 <!-- /.row -->
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Agrega a la tabla el chofer</h3>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Asigna un chofer a cada pedido:</h3>
 
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+        <div class="card-tools d-flex justify-content-center ">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
+            <br>
           </div>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body table-responsive p-0">
-          <table class="table table-hover text-nowrap">
-            <thead>
-              <tr>
-                <th>Check</th>
-                <th># Pedido</th>
-                <th>Fecha del pedido</th>
-                <th>Fecha entrega</th>
-                <th>Cliente</th>
-                <th>Dirección</th>
-                <th>Total</th>
-                <th>Chofer</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>183</td>
-                <th>26-05-22</th>
-                <td>11-7-2023</td>
-                <td>José Luis Paredes</td>
-                <td>Tlalnepantla, Edo. Méx.</td>
-                <td>$ 34, 956</td>
-                <td><select>
-                        <option value="value1">Emiliano Zapata</option>
-                        <option value="value2" selected>Lázaro Cárdenas</option>
-                        <option value="value3">Piolín</option>
-                    </select></td>
-                </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>183</td>
-                <th>26-05-22</th>
-                <td>11-7-2023</td>
-                <td>José Luis Paredes</td>
-                <td>Tlalnepantla, Edo. Méx.</td>
-                <td>$ 34, 956</td>
-                <td>Emiliano Zapata</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>183</td>
-                <th>26-05-22</th>
-                <td>11-7-2023</td>
-                <td>José Luis Paredes</td>
-                <td>Tlalnepantla, Edo. Méx.</td>
-                <td>$ 34, 956</td>
-                <td>Emiliano Zapata</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>183</td>
-                <th>26-05-22</th>
-                <td>11-7-2023</td>
-                <td>José Luis Paredes</td>
-                <td>Tlalnepantla, Edo. Méx.</td>
-                <td>$ 34, 956</td>
-                <td>Emiliano Zapata</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+          <thead>
+            <tr>
+              <th>Check</th>
+              <th># Pedido</th>
+              <th>Fecha del pedido</th>
+              <th>Fecha entrega</th>
+              <th>Cliente</th>
+              <th>Dirección</th>
+              <th>Total</th>
+              <th>Chofer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>183</td>
+              <th>26-05-22</th>
+              <td>11-7-2023</td>
+              <td>José Luis Paredes</td>
+              <td>Tlalnepantla, Edo. Méx.</td>
+              <td>$ 34, 956</td>
+              <td><select class="custom-select">
+                  <option value="value1">Emiliano Zapata</option>
+                  <option value="value2" selected>Lázaro Cárdenas</option>
+                  <option value="value3">Piolín</option>
+                </select>
+              </td>
+              <td><button class="btn btn-outline-secondary" type="button">Agregar</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>183</td>
+              <th>26-05-22</th>
+              <td>11-7-2023</td>
+              <td>José Luis Paredes</td>
+              <td>Tlalnepantla, Edo. Méx.</td>
+              <td>$ 34, 956</td>
+              <td><select class="custom-select">
+                  <option value="value1">Emiliano Zapata</option>
+                  <option value="value2" selected>Lázaro Cárdenas</option>
+                  <option value="value3">Piolín</option>
+                </select>
+              </td>
+              <td><button class="btn btn-outline-secondary" type="button">Agregar</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>183</td>
+              <th>26-05-22</th>
+              <td>11-7-2023</td>
+              <td>José Luis Paredes</td>
+              <td>Tlalnepantla, Edo. Méx.</td>
+              <td>$ 34, 956</td>
+              <td><select class="custom-select">
+                  <option value="value1">Emiliano Zapata</option>
+                  <option value="value2" selected>Lázaro Cárdenas</option>
+                  <option value="value3">Piolín</option>
+                </select>
+              </td>
+              <td><button class="btn btn-outline-secondary" type="button">Agregar</button></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>183</td>
+              <th>26-05-22</th>
+              <td>11-7-2023</td>
+              <td>José Luis Paredes</td>
+              <td>Tlalnepantla, Edo. Méx.</td>
+              <td>$ 34, 956</td>
+              <td><select class="custom-select">
+                  <option value="value1">Emiliano Zapata</option>
+                  <option value="value2" selected>Lázaro Cárdenas</option>
+                  <option value="value3">Piolín</option>
+                </select>
+              </td>
+              <td><button class="btn btn-outline-secondary" type="button">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
     </div>
+    <div class="d-flex justify-content-center">
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary" type="button">Actualizar</button><br>
+        <button class="btn btn-info" type="button">Enviar ruta</button>
+      </div>
+    </div>
+    <!-- /.card -->
   </div>
-  
+</div>
