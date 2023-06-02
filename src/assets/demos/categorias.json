@@ -1,0 +1,142 @@
+{
+    "value": [
+        {
+            "u_IdDepto": 1,
+            "u_DescCat": "Café de especialidad",
+            "code": "1",
+            "name": "CAFÉ DE ESPECIALIDAD"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "TÉ",
+            "code": "10",
+            "name": "TÉ"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "TÉ EN BOLSA",
+            "code": "11",
+            "name": "TÉ EN BOLSA"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "TISANAS",
+            "code": "12",
+            "name": "TISANAS"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "BREW BAR & COLD BREW",
+            "code": "13",
+            "name": "BREW BAR & COLD BREW"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "JARRAS Y TETERAS DE SERVICIO",
+            "code": "14",
+            "name": "JARRAS Y TETERAS DE SERVICIO"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "BÁSCULAS",
+            "code": "15",
+            "name": "BÁSCULAS"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "ACCESORIOS PARA BARISTA",
+            "code": "16",
+            "name": "ACCESORIOS PARA BARISTA"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "ACCESORIOS PARA CAFETERÍA",
+            "code": "17",
+            "name": "ACCESORIOS PARA CAFETERÍA"
+        },
+        {
+            "u_IdDepto": 4,
+            "u_DescCat": "LIMPIEZA",
+            "code": "18",
+            "name": "LIMPIEZA"
+        },
+        {
+            "u_IdDepto": 5,
+            "u_DescCat": "MÁQUINAS DE CAFÉ",
+            "code": "19",
+            "name": "MÁQUINAS DE CAFÉ"
+        },
+        {
+            "u_IdDepto": 1,
+            "u_DescCat": "CAFÉ PREMIUM",
+            "code": "2",
+            "name": "CAFÉ PREMIUM"
+        },
+        {
+            "u_IdDepto": 5,
+            "u_DescCat": "LICUADORAS",
+            "code": "20",
+            "name": "LICUADORAS"
+        },
+        {
+            "u_IdDepto": 5,
+            "u_DescCat": "MOLINOS",
+            "code": "21",
+            "name": "MOLINOS"
+        },
+        {
+            "u_IdDepto": 5,
+            "u_DescCat": "TOSTADORES",
+            "code": "22",
+            "name": "TOSTADORES"
+        },
+        {
+            "u_IdDepto": 6,
+            "u_DescCat": "REFACCIONES",
+            "code": "23",
+            "name": "REFACCIONES"
+        },
+        {
+            "u_IdDepto": 1,
+            "u_DescCat": "CAFÉ VERDE",
+            "code": "3",
+            "name": "CAFÉ VERDE"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "BASES EN POLVO",
+            "code": "4",
+            "name": "BASES EN POLVO"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "CHOCOLATE EN POLVO",
+            "code": "5",
+            "name": "CHOCOLATE EN POLVO"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "JARABES",
+            "code": "6",
+            "name": "JARABES"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "SALSAS",
+            "code": "7",
+            "name": "SALSAS"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "PURÉ Y CONCENTRADOS",
+            "code": "8",
+            "name": "PURÉ Y CONCENTRADOS"
+        },
+        {
+            "u_IdDepto": 3,
+            "u_DescCat": "COMPLEMENTOS Y TOPPINGS",
+            "code": "9",
+            "name": "COMPLEMENTOS Y TOPPINGS"
+        }
+    ]
+}

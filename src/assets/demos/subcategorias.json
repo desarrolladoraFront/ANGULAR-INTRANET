@@ -1,0 +1,106 @@
+{
+    "value": [
+        {
+            "u_IdCat": 2,
+            "u_DescSubCat": "MEZCLA ESPECIAL",
+            "code": "1",
+            "name": "MEZCLA ESPECIAL"
+        },
+        {
+            "u_IdCat": 13,
+            "u_DescSubCat": "JARRAS PARA MÉTODOS",
+            "code": "10",
+            "name": "JARRAS PARA MÉTODOS"
+        },
+        {
+            "u_IdCat": 13,
+            "u_DescSubCat": "COMPLEMENTO PARA MÉTODOS",
+            "code": "11",
+            "name": "COMPLEMENTO PARA MÉTODOS"
+        },
+        {
+            "u_IdCat": 16,
+            "u_DescSubCat": "JARRAS ESPUMADORAS",
+            "code": "12",
+            "name": "JARRAS ESPUMADORAS"
+        },
+        {
+            "u_IdCat": 16,
+            "u_DescSubCat": "MOLINOS MANUALES",
+            "code": "13",
+            "name": "MOLINOS MANUALES"
+        },
+        {
+            "u_IdCat": 16,
+            "u_DescSubCat": "CATACION",
+            "code": "14",
+            "name": "CATACION"
+        },
+        {
+            "u_IdCat": 16,
+            "u_DescSubCat": "ELEMENTOS AUXILIARES",
+            "code": "15",
+            "name": "ELEMENTOS AUXILIARES"
+        },
+        {
+            "u_IdCat": 19,
+            "u_DescSubCat": "MÁQUINAS DE ESPRESSO",
+            "code": "16",
+            "name": "MÁQUINAS DE ESPRESSO"
+        },
+        {
+            "u_IdCat": 19,
+            "u_DescSubCat": "MÁQUINAS DE AUTOSERVICIO",
+            "code": "17",
+            "name": "MÁQUINAS DE AUTOSERVICIO"
+        },
+        {
+            "u_IdCat": 2,
+            "u_DescSubCat": "MEZCLA PERSONALIZADA",
+            "code": "2",
+            "name": "MEZCLA PERSONALIZADA"
+        },
+        {
+            "u_IdCat": 2,
+            "u_DescSubCat": "TUESTES ESPECIALES",
+            "code": "3",
+            "name": "TUESTES ESPECIALES"
+        },
+        {
+            "u_IdCat": 9,
+            "u_DescSubCat": "PERLAS DE TAPIOCA",
+            "code": "4",
+            "name": "PERLAS DE TAPIOCA"
+        },
+        {
+            "u_IdCat": 9,
+            "u_DescSubCat": "PERLAS EXPLOSIVA",
+            "code": "5",
+            "name": "PERLAS EXPLOSIVA"
+        },
+        {
+            "u_IdCat": 9,
+            "u_DescSubCat": "JELLIES",
+            "code": "6",
+            "name": "JELLIES"
+        },
+        {
+            "u_IdCat": 9,
+            "u_DescSubCat": "TOPPINGS",
+            "code": "7",
+            "name": "TOPPINGS"
+        },
+        {
+            "u_IdCat": 9,
+            "u_DescSubCat": "POPOTES",
+            "code": "8",
+            "name": "POPOTES"
+        },
+        {
+            "u_IdCat": 13,
+            "u_DescSubCat": "MÉTODOS DE EXTRACCIÓN",
+            "code": "9",
+            "name": "MÉTODOS DE EXTRACCIÓN"
+        }
+    ]
+}

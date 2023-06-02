@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { PagesModule } from './pages/pages.module';
 import { NopageFoundComponent } from './nopage.found/nopage.found.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -21,10 +23,15 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    AuthModule,
     PagesModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    HttpClientModule
+
   ],
-  exports:[RouterModule],
+  exports:[
+    RouterModule,
+  ],
 
   providers: [],
   bootstrap: [AppComponent],

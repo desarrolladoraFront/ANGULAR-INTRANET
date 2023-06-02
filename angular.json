@@ -16,6 +16,9 @@
             "outputPath": "dist/intranet",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "paper"
+            ],
             "polyfills": [
               "zone.js"
             ],
