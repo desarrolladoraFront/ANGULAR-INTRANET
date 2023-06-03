@@ -11,6 +11,14 @@ import { CotizadorComponent } from './cotizador/cotizador.component';
 import { ListaDePreciosComponent } from './lista-de-precios/lista-de-precios.component';
 import { EntregasADomicilioComponent } from './entregas-a-domicilio/entregas-a-domicilio.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { BoletinComponent } from './boletin/boletin.component';
+import { PublicoComponent } from './publico/publico.component';
+import { DistribuidorComponent } from './distribuidor/distribuidor.component';
+import { RefaccionPublicoComponent } from './refaccion-publico/refaccion-publico.component';
+import { BoletinDistribuidorComponent } from './boletin-distribuidor/boletin-distribuidor.component';
+import { BoletinFronterizoComponent } from './boletin-fronterizo/boletin-fronterizo.component';
+import { RefaccionDistribuidorComponent } from './refaccion-distribuidor/refaccion-distribuidor.component';
+import { FronterizoComponent } from './fronterizo/fronterizo.component';
 
 
 
@@ -24,7 +32,15 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
     CotizadorComponent,
     ListaDePreciosComponent,
     EntregasADomicilioComponent,
-    ECommerceComponent
+    ECommerceComponent,
+    BoletinComponent,
+    PublicoComponent,
+    DistribuidorComponent,
+    RefaccionPublicoComponent,
+    BoletinDistribuidorComponent,
+    BoletinFronterizoComponent,
+    RefaccionDistribuidorComponent,
+    FronterizoComponent
   ],
   imports: [
     CommonModule,

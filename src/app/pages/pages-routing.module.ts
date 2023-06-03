@@ -12,6 +12,14 @@ import { CotizadorComponent } from './cotizador/cotizador.component';
 import { ListaDePreciosComponent } from './lista-de-precios/lista-de-precios.component';
 import { EntregasADomicilioComponent } from './entregas-a-domicilio/entregas-a-domicilio.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { BoletinComponent } from './boletin/boletin.component';
+import { DistribuidorComponent } from './distribuidor/distribuidor.component';
+import { RefaccionPublicoComponent } from './refaccion-publico/refaccion-publico.component';
+import { BoletinDistribuidorComponent } from './boletin-distribuidor/boletin-distribuidor.component';
+import { BoletinFronterizoComponent } from './boletin-fronterizo/boletin-fronterizo.component';
+import { RefaccionDistribuidorComponent } from './refaccion-distribuidor/refaccion-distribuidor.component';
+import { FronterizoComponent } from './fronterizo/fronterizo.component';
+import { PublicoComponent } from './publico/publico.component';
 
 const routes: Routes = [
   {
@@ -27,6 +35,16 @@ const routes: Routes = [
     children:[
       {path: 'cotizador', component: CotizadorComponent},
       {path: 'listadeprecios', component: ListaDePreciosComponent},
+        {path: 'listadeprecios/boletin', component: BoletinComponent},
+        {path: 'listadeprecios/publico', component: PublicoComponent},
+        {path: 'listadeprecios/distribuidor', component: DistribuidorComponent},
+        {path: 'listadeprecios/refaccionpublico', component: RefaccionPublicoComponent},
+        {path: 'listadeprecios/boletindistribuidor', component: BoletinDistribuidorComponent },
+        {path: 'listadeprecios/boletinfronterizo', component:BoletinFronterizoComponent },
+        {path: 'listadeprecios/refacciondistribuidor', component: RefaccionDistribuidorComponent},
+        {path: 'listadeprecios/fronterizo', component: FronterizoComponent},
+        
+
       {path: 'entregasadomicilio', component: EntregasADomicilioComponent},
       {path: 'e-commerce', component: ECommerceComponent},
       {path: '**', redirectTo: 'comercial'}
