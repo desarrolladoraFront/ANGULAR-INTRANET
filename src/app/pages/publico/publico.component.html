@@ -1,1 +1,283 @@
-<p>publico works!</p>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+  
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="card">
+            <div class="card-header">
+                <div class="col-md-6">
+              <h3 class="card-title">
+                <i class="ion ion-clipboard mr-1"></i>
+                Lista de precio Publico 
+              </h3>
+            </div>
+              <div class="col-md-12">
+                        <label class="flex"> <div class="verde"></div> Descuento actual</label>
+                        <label class="flex"><div class="amarillo_"></div> Descuento proximo</label>
+                      <label class="float-right"><div class="paginado"></div></label>
+                      
+                    </div>
+              <!--<div class="card-tools">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                  <li class="page-item"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                </ul>
+              </div>-->
+            </div><!-- /.card-header -->
+            <div class="card-body table-responsive">
+              <table class="table table-striped table-sm mt-3 display" id="publico" style="width:100%">
+                <thead>
+                  <tr>
+  
+                  <th scope="col" rowspan="2" class="text-center max-code">Código</th>
+                  <!--<th scope="col" rowspan="2" class="text-center max-code">Código Antiguo</th>-->
+  
+                  <th scope="col" rowspan="2" class="text-center max-nombre">Nombre</th>
+                  <th scope="col" rowspan="2" class="text-center max-line">Línea</th>
+                  <th scope="col" rowspan="2" class="text-center">Precio Base</th>
+  
+                  <th scope="col" rowspan="2" class="text-center">IEPS BS</th>
+                  <th scope="col" rowspan="2" class="text-center">IEPS 8%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 16%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 0%</th>
+  
+  
+                  <th scope="col" rowspan="2" class="text-center bg-dark text-white">Precio Regular<br>con Impuesto</th>
+                  <th scope="col" rowspan="2" class="text-center max-descuento">% Descuento</th>
+                  <th scope="col" rowspan="2" class="text-center">Precio Oferta <br>sin Impuesto</th>
+                   <th scope="col" rowspan="2" class="text-center">IEPS BS</th>
+                  <th scope="col" rowspan="2" class="text-center">IEPS 8%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 16%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 0%</th>
+  
+                        <th scope="col" rowspan="2" class="text-center bg-dark text-white">Precio Oferta<br>con Impuesto</th>
+                  <th scope="col" rowspan="2" class="text-center">Moneda</th>
+                  <th scope="col" colspan="2" class="text-center">Descuento válido</th>
+                  <tr>
+                    <th scope="col" class="text-center">de</th>
+                    <th scope="col" class="text-center">hasta</th>
+                  </tr>
+              </thead>
+                <tbody>
+                 
+                    <tr >
+                         <td></td>
+                         <!--<td>{{ $registro->codigoa  }}</td>-->
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                    </tr>
+               
+  
+                </tbody>
+              </table>
+  
+  
+  
+  
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+  
+  
+  
+  
+  
+  
+            <!-- /.card-footer-->
+  
+          <!-- /.card -->
+        </section>
+        <!-- /.Left col -->
+  
+        <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+
+    <script>    
+        var paquetes = {!! json_encode($paquetes) !!};
+    </script>
+
+<script>
+     var url_api = "/api/v1/venta/lista_precio/5";
+  var url_download = "{{ asset('/file/Boletín ofertas  Mayo-Julio - Publico.xlsx') }}";
+
+
+                          $( document ).ready(function() {
+
+                            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
+                var id_ = "";
+                         $('#publico').DataTable({
+                              'dom': 'Bfrtip',
+                              responsive: true,
+               processing: true,
+               serverSide: false,
+               deferRender: true,
+               ajax: url_api,
+               columns: [
+                { data: 'codigo', name: 'codigo', className: "my_class" },
+                { data: 'codigoa', name: 'codigo_antiguo', className: "my_class" },
+
+                { data: 'nombre', name: 'nombre', className: "my_class" },
+                { data: 'linea', name: 'linea', className: "my_class" },
+                { data: 'preciobase', name: 'preciobase' , className: "my_class",  render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+                { data: 'IEPS_BS_C', name: 'IEPS_BS_C' ,  className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IEPS_8_C', name: 'IEPS_8_C' , className: "my_class" ,render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IVA_16_C', name: 'IVA_16_C' , className: "my_class" ,render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IVA_0_C', name: 'IVA_0_C' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+
+
+                { data: 'precioregularc_impuesto', name: 'precioregularc_impuesto' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'descuento', name: 'descuento' , className: "my_class" , render: $.fn.dataTable.render.number(',', '.', 2, '', '%')},
+
+                { data: 'precioofertas_impuestos', name: 'precioofertas_impuestos' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+                { data: 'IEPS_BS_S', name: 'IEPS_BS_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IEPS_8_S', name: 'IEPS_8_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IVA_16_S', name: 'IVA_16_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+                { data: 'IVA_0_S', name: 'IVA_0_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+
+                { data: 'precioofertac_impuestos', name: 'precioofertac_impuestos' , className: "my_class" ,  render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+                { data: 'moneda', name: 'moneda' , className: "my_class"},
+                { data: 'descuentovalidode', name: 'descuentovalidode' , className: "my_class"},
+                { data: 'descuentovalidohasta', name: 'descuentovalidohasta' , className: "my_class"},
+
+
+
+              ],
+               "pageLength": 10,
+                              buttons: [
+                  {
+                        extend: 'copy',
+                                       title: "Lista de Precio {{ (request()->is('distribuidor')) ? 'Distribuidor' : 'Público' }}",
+                                       className: 'btn btn-sm btn-outline-dark m-1'
+                  },
+                                   {
+                                       extend: 'excel',
+                                       title: "Lista de Precio {{ (request()->is('distribuidor')) ? 'Distribuidor' : 'Público' }}",
+                                       className: 'btn btn-sm btn-outline-dark m-1'
+                                       //messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                                   },
+                                   {
+                                       extend: 'pdf',
+                                       messageBottom: null,
+                                       className: 'btn btn-sm btn-outline-dark m-1'
+                                   },
+                                   {
+                                       text: 'Promoción de Paquetes',
+                    title: 'Promoción de Paquetes',
+                    className: 'btn btn-sm btn-outline-dark m-1',
+                                       action: function () {
+                                           var link=document.createElement('a');
+                     document.body.appendChild(link);
+                     link.href= url_download;
+                     link.click();
+                                       }
+                                   }
+                               ],
+                 'createdRow': function( row, data, dataIndex ) {
+                      $(row).attr('data-id', data.id);
+                  var ff = data.descuentovalidode;
+                  var oo = data.descuentovalidohasta;
+                  var dd = new Date;
+                  if(ff != "-"){
+                    if(new Date(ff) <= new Date(dd) || new Date(oo) <= new Date(dd)){
+                      $(row).addClass("descuento_proximo");
+                    }else{
+                      $(row).addClass("descuento_activo");
+                    }
+                  }
+                    },
+                              "language": {
+
+
+     "sProcessing":     "Procesando...",
+     "sLengthMenu":     "Mostrar _MENU_ registros",
+     "sZeroRecords":    "No se encontraron resultados",
+     "sEmptyTable":     "Ningún dato disponible en esta tabla",
+     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+     "sSearch":         "Buscar:",
+     "sInfoThousands":  ",",
+     "sLoadingRecords": "Cargando...",
+     "oPaginate": {
+         "sFirst":    "Primero",
+         "sLast":     "Último",
+         "sNext":     "»",
+         "sPrevious": "«"
+     },
+     "oAria": {
+         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+     },
+     "buttons": {
+         "copy": "Copiar",
+         "colvis": "Visibilidad"
+     }
+
+                                },
+                  "fnDrawCallback": function( oSettings ) {
+                  $("#publico_filter").attr('style','display:none');
+                  if($( "#copiar_icon" ).length == 0){
+                    $( "span:contains('Copiar')" ).append('<img class="p-1" id="copiar_icon" src="/img/copiar.png" alt="icono descarga">');
+                  }
+                  if($( "#exel_icon" ).length == 0){
+                    $( "span:contains('Excel')" ).append('<img class="p-1" id="exel_icon" src="/img/download.png" alt="icono descarga">');
+                  }
+                  if($( "#pdf_icon" ).length == 0){
+                    $( "span:contains('PDF')" ).append('<img class="p-1" id="pdf_icon" src="/img/download.png" alt="icono descarga">');
+                  }
+                  if($( "#pdf_icon_2" ).length == 0){
+                    $( "span:contains('Promoción de Paquetes')" ).parent().addClass('float-right');
+                    $( "span:contains('Promoción de Paquetes')" ).append('<img class="p-1" id="pdf_icon_2" src="/img/download.png" alt="icono descarga">');
+                  }
+
+                 }
+
+                            });
+
+               oTable = $('#publico').DataTable();   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
+              $('#myInputTextField').keyup(function(){
+                 //$('#example').DataTable().column(0).search(this.value.trim(), false, false).draw();
+                  oTable.search($(this).val()).draw() ;
+              });
+
+                            console.log( "ready!" );
+                          });
+             //$.fn.dataTable.ext.classes.sPageButton = 'button primary_button';
+
+</script>
