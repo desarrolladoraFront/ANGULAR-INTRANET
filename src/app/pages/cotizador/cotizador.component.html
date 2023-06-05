@@ -1,1 +1,2413 @@
-<p>cotizador works!</p>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="card">
+            <div class="card-header">
+            <div class="row">
+                <div class="col-md-12">
+              <h3 class="card-title">
+                <i class="ion ion-clipboard mr-1"></i>
+                Cotizador 
+              </h3>
+          
+              <small class="float-right">Fecha:</small>  <!--{{ date('Y-m-d') }}-->
+            </div>
+            </div>
+                  <!--<div class="col-md-12">
+                  <select id="select-to" class="contacts selectized input-group-lg" placeholder="Seleccione un cliente..." tabindex="-1" ></select>
+                  </div>-->
+                  <div class="col-md-12">
+                      <div class="input-group input-group-lg">
+                          <div class="input-group-prepend" id="open_add_user">
+                              <span class="input-group-text" ><i class="fa fa-user-plus"></i></span>
+                          </div>
+                          <select id="select-to" class="contacts selectized input-group-lg" placeholder="Seleccione un cliente..." tabindex="-1" >
+                              <option value="C-00001" selected>MOSTRADOR EXPO </option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="input-group input-group-lg">
+                          <div class="input-group-prepend" id="open_add_user">
+                              <span class="input-group-text"><i class="fa fa-truck"></i></span>
+                          </div>
+                          <select id="select-to-entrega"  class="form-select selectized input-group-lg" tabindex="-1"><!--readonly-->
+                              <option value="">Seleccionar método de entrega</option>
+                              
+                              <option value="200">Domicilio</option>
+                              <option value="200.2">Piso</option>
+                              <option value="02">Guadalajara</option>
+                              <option value="03">Puebla</option>
+                              <option value="04">Monterrey</option>
+                              <option value="05">Queretaro</option>
+                              <option value="06">Tijuana</option>
+                              <option value="09">Zona Rosa</option>
+                              <option value="10">Xalapa</option>
+                              <option value="11">Viaducto</option>
+                              <option value="12">Zapopan</option>
+                              <option value="14">Leon</option>
+                              <option value="15">Toluca</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-12">		
+                      <div class="input-group input-group-lg">
+                          <div class="input-group-prepend" id="open_lector">
+                              <span class="input-group-text" ><i class="fa-solid fa-barcode"></i></span>
+                          </div>
+                          <select id="select-to-articulo" class="contacts selectized input-group-lg" placeholder="Buscar Articulo por Codigo de barra, nombre , clave..." tabindex="-1" >
+                          </select>
+                      </div>
+                  </div>
+                  
+              <!--<div class="card-tools">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                  <li class="page-item"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                </ul>
+              </div>-->
+            </div><!-- /.card-header -->
+            <div class="card-body table-responsive">
+            <!-- <div style="display: flex;">
+                <div>
+                  <label>Metodo de entrega: </label>
+                </div>
+                <div style="padding-left: 1%; width: 40%;">
+                  <input style="border: 0px;width: 7%;height: 1em;" type="radio" value="200" name="WarehouseCode"/><label>Domicilio</label>
+                  <input style="border: 0px;width: 7%;height: 1em;" type="radio" value="200.2" name="WarehouseCode"/><label>Piso</label>
+                  
+                </div>
+            </div> -->
+              <table class="table table-striped table-sm mt-3 display" id="publico" style="width:100%">
+                <thead>
+                  <tr>
+  
+                  <th scope="col" rowspan="2" class="text-center max-code">Código</th>
+                  <!--<th scope="col" rowspan="2" class="text-center max-code">Código Antiguo</th>-->
+  
+                  <th scope="col" rowspan="2" class="text-center max-nombre">Nombre</th>
+                  <th scope="col" rowspan="2" class="text-center max-line">Línea</th>
+                  <th scope="col" rowspan="2" class="text-center">Precio Base</th>
+  
+                  <th scope="col" rowspan="2" class="text-center">IEPS BS</th>
+                  <th scope="col" rowspan="2" class="text-center">IEPS 8%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 16%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 0%</th>
+  
+  
+                  <th scope="col" rowspan="2" class="text-center bg-dark text-white">PRECIO S/D</th>
+                  <th scope="col" rowspan="2" class="text-center max-descuento">% Descuento</th>
+                  <th scope="col" rowspan="2" class="text-center">PRECIO S/D</th>
+                   <th scope="col" rowspan="2" class="text-center">IEPS BS</th>
+                  <th scope="col" rowspan="2" class="text-center">IEPS 8%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 16%</th>
+                  <th scope="col" rowspan="2" class="text-center">IVA 0%</th>
+  
+                        <th scope="col" rowspan="2" class="text-center bg-dark text-white">Precio Oferta<br>con Impuesto</th>
+                  <th scope="col" rowspan="2" class="text-center">Stock<br/>en Almacén</th>
+                  <th scope="col" colspan="2" class="text-center"></th>
+                  <tr>
+                    <th scope="col" class="text-center">Cantidad</th>
+                    <th scope="col" class="text-center">Importe</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                  </tr>
+              </thead>
+                <tbody>
+                
+                </tbody>
+                 <tfoot>
+                  <tr>
+          <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+              <th scope="row" class="text-right">Sub Total:</th>
+              <td class="sub_total">$0.00</td>
+              <td></td>
+          </tr>
+          <tr>
+          <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+              <th scope="row" class="text-right">Impuestos:</th>
+              <td class="impuestos">$0.00</td>
+              <td></td>
+          </tr>
+          <tr>
+          <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+  
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+              <th scope="row" class="text-right">Total:</th>
+              <td class="total">$0.00</td>
+              <td></td>
+          </tr>
+      </tfoot>
+              </table>
+              <div class="row">
+  <div class="col-12">
+  <div class="form-group">
+      <label for="comentario">Observaciones:</label>
+      <textarea class="form-control" id="comentario" rows="3"></textarea>
+    </div>
+  </div></div>
+  
+            </div><!-- /.card-body -->
+            
+            
+            
+            
+            <div class="card-footer">
+            <div class="row no-print">
+  <div class="col-12">
+  <!--<a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>-->
+  <button type="button" class="btn btn-outline-success float-right" id="generar"><i class="fa fa-print"></i> Generar Cotización
+  </button>
+  <button type="button" class="btn btn-outline-danger float-right" style="margin-right: 5px;" id="cancelar">
+  <i class="fas fa-trash"></i> Cancelar
+  </button>
+  </div>
+  </div>
+            </div><!-- /.card-foother -->
+            
+          </div>
+          <!-- /.card -->
+  
+  
+  
+  
+  
+  
+            <!-- /.card-footer-->
+  
+          <!-- /.card -->
+        </section>
+        <!-- /.Left col -->
+  
+        <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <div class="modal" tabindex="-1" role="dialog" id="lector">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Lector de Código de Barra</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><div id="resultado"></div>
+      <div id="camera"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Agregar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="detail">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title nombre_product"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div id="result_detail" class="result_detail"></div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="nuevo_usuario">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Nuevo Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+          @csrf
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre Completo">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+      </div>
+    </div>
+   
+    <div class="form-group row">
+     <div class="col-sm-12">
+    <label>Tipo de cliente:</label>
+     </div>
+      <div class="col-sm-12"> 
+        <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+      Moral
+    </label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+      Fisica
+    </label>
+  </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="rfc" name="rfc" placeholder="RFC" value="XAXX010101000">
+      </div>
+    </div>
+  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="newClient">Agregar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelClient">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="ticket">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="ticket_body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" id="genera_pdf">Imprimir Ticket</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" id="reiniciar">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="historico">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Histórico de Cotizaciones</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+            <i class="fas fa-search"></i>
+          </a>
+          <div class="navbar-search-block">
+            <form class="form-inline">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search" id="buscar" name="buscar">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+  </li>
+  </ul>
+  </nav>
+  <div class="history">
+      <div class="d-flex justify-content-center">
+          <div class="spinner-grow text-warning text-center" role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+      </div>	
+  </div>
+  
+        </div>
+  <!--<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item active"><a class="page-link" href="#">3</a></li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Siguiente</a>
+      </li>
+    </ul>
+  </nav>-->
+        <div class="modal-footer">
+        <!--id="agregar_cotizacion"-->
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Aceptar</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" id="cerrar_historico">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var REGEX_EMAIL = "([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)";
+    let dollarUSLocale = Intl.NumberFormat('en-US');
+    let dollarIndianLocale = Intl.NumberFormat('en-IN');
+    let dollarUS = Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
+    var isUpdate = false;
+    var DocEntry = "";
+    var DocNum = "";
+    
+    var select_entrega = $("#select-to-entrega").selectize({
+      create: true,
+      sortField: "text",
+      onChange: function(value) {
+          console.log('Selectize changed: ' + value);
+          
+                var data_stock_domicilio = JSON.parse( localStorage.getItem('stock_domicilio'));
+            var data_stock_piso = JSON.parse( localStorage.getItem('stock_piso'));
+    
+    
+        try {
+            $('#publico > tbody > tr').each(function(el, index){
+                try {
+      //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+      var code_change = $(this).attr("data-codigo");
+      console.log(code_change);
+           console.log('hi');
+          console.log($(this).find(".stock").html());
+          //$(this).find( ".button-plus" ).trigger( "click" );
+          //find = true;
+          if(value == "200"){
+            
+    stockc = data_stock_domicilio.filter(function(items){
+                return items.ItemCode == code_change;         
+            })	
+        
+            }else{
+        
+    stockc = data_stock_piso.filter(function(items){
+                return items.ItemCode == code_change;         
+            })
+    }
+                
+                } catch (error) {
+        //console.error(stockc);
+        //$(this).find('.stock').html(0);
+          //console.error(error);
+          // Expected output: ReferenceError: nonExistentFunction is not defined
+          // (Note: the exact output may be browser-dependent)
+        }
+    try {
+    $(this).find('.stock').html(parseInt(stockc[0]['OnHand']));
+    } catch (error) {
+        //console.error(stockc);
+        //$(this).find('.stock').html(0);
+          //console.error(error);
+          // Expected output: ReferenceError: nonExistentFunction is not defined
+          // (Note: the exact output may be browser-dependent)
+        }
+       
+    });
+        
+        } catch (error) {
+          console.error(error);
+          // Expected output: ReferenceError: nonExistentFunction is not defined
+          // (Note: the exact output may be browser-dependent)
+        }
+    
+        }
+    });
+    //select_entrega[0].selectize.disable();
+    function launchFullScreen(element) {
+      if(element.requestFullScreen) {
+        element.requestFullScreen();
+      } else if(element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if(element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen();
+      }
+    }
+    // Lanza en pantalla completa en navegadores que lo soporten
+     function cancelFullScreen() {
+         if(document.cancelFullScreen) {
+             document.cancelFullScreen();
+         } else if(document.mozCancelFullScreen) {
+             document.mozCancelFullScreen();
+         } else if(document.webkitCancelFullScreen) {
+             document.webkitCancelFullScreen();
+         }
+     }
+     
+    
+     
+    $("#cancelClient").on('click',function(){
+        $("#name").val("");
+        $("#email").val("");
+        $("#phone").val("");
+        $("#flexRadioDefault1").val("");
+        location.reload();
+    });
+    $("#generar").on('click',function(){
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    $(this).addClass("disabled");
+    var client_select = $("#select-to").val();
+    var client_select_2 = $("#select-to-selectized").val();
+    var data_row = $("#publico > tbody  > tr")[0].dataset.info;
+    if(client_select == ''  || jQuery.type(data_row) === 'undefined'){
+        Swal.fire({
+              icon: 'error',
+              title: 'Campo vacio',
+              text: 'Seleccionar cliente o seleccionar articulo para venta',
+              footer: ''
+            });
+        $("#generar").removeClass("disabled");
+    }else if($("#select-to-entrega").val() == ''){
+        Swal.fire({
+              icon: 'error',
+              title: 'Campo vacio',
+              text: 'Seleccionar método de entrega',
+              footer: ''
+            });
+        $("#generar").removeClass("disabled");
+    }else{
+        var DocumentLines = [];
+        var LineTaxJurisdictions = [];
+        var DocumentLineAdditionalExpenses = [];
+        var Document = new Object();
+    
+        Document.CardCode = $("#select-to").val();
+        Document.CardName = $(".cliente").attr('data-name');
+        
+        Document.email = $(".cliente").attr('data-email');
+        
+        Document.NumAtCard = '';
+        Document.DocDueDate = "2023-06-25"; 
+        Document.DocCurrency = "MXN";
+        Document.Comments  = $("#comentario").val();
+        if(SalesPersonCode != '-1'){
+        Document.SalesPersonCode = SalesPersonCode;
+        }
+        if($("#select-to-entrega").val() == '200.2'){
+            Document.U_EnvioExpo = 1;
+        }
+        if($("#select-to-entrega").val() == '200'){
+            Document.U_EnvioExpo = 2;
+        }
+        if($("#select-to-entrega").val() == '02'){
+            Document.U_EnvioExpo = 3;
+        }
+        if($("#select-to-entrega").val() == '03'){
+            Document.U_EnvioExpo = 4;
+        }
+        if($("#select-to-entrega").val() == '04'){
+            Document.U_EnvioExpo = 5;
+        }
+        if($("#select-to-entrega").val() == '05'){
+            Document.U_EnvioExpo = 6;
+        }
+        if($("#select-to-entrega").val() == '06'){
+            Document.U_EnvioExpo = 7;
+        }
+        if($("#select-to-entrega").val() == '09'){
+            Document.U_EnvioExpo = 8;
+        }
+        if($("#select-to-entrega").val() == '10'){
+            Document.U_EnvioExpo = 9;
+        }
+        if($("#select-to-entrega").val() == '11'){
+            Document.U_EnvioExpo = 10;
+        }				
+        if($("#select-to-entrega").val() == '12'){
+            Document.U_EnvioExpo = 11;
+        }				
+        if($("#select-to-entrega").val() == '14'){
+            Document.U_EnvioExpo = 12;
+        }				
+        if($("#select-to-entrega").val() == '15'){
+            Document.U_EnvioExpo = 13;
+        }				
+    
+         
+    
+    
+    
+         $('#publico > tbody  > tr').each(function(index, tr) { 
+            console.log("data: ");
+            //console.log(data);
+            console.log($(tr).attr('data-info'));
+            
+            var data = JSON.parse($(tr).attr('data-info'));
+            //console.log("data json tr: ", data);
+            var Quantity = $(tr).children('.quantity').children('div').children('input:eq(1)').val();
+            var U_VentaIEPS = Math.round(data.IEPS_BS_S * 100 ) / 100;
+            var DocumentLineItem = new Object();
+            DocumentLineItem.ItemCode =  data.codigo;
+            DocumentLineItem.Quantity = Quantity;
+            DocumentLineItem.DiscountPercent = data.descuento;
+            DocumentLineItem.TaxCode = data.TaxCode;
+            DocumentLineItem.WarehouseCode = $("#select-to-entrega").val();
+            
+            DocumentLineItem.U_VentaIEPS =data.IEPS_BS_S * Quantity;
+            DocumentLineItem.U_VTARendimiento = data.IEPS_BS_S;
+            
+    
+    
+            DocumentLineItem.U_VTAPrecio = ((Math.round(data.IEPS_BS_S) == 0 || data.IEPS_BS_S == null) ? null : data.preciobase +  U_VentaIEPS ); //UnitPrice
+            DocumentLineItem.U_VTAPrecioLinea = ((Math.round(data.IEPS_BS_S) == 0 || data.IEPS_BS_S == null) ? null : data.preciobase +  U_VentaIEPS ) *  Quantity; //227.0;//UnitPrice * Quantity
+            
+            DocumentLineItem.Currency = data.moneda;
+            DocumentLineItem.VatGroup = "IVATRA16";//data.TaxCode;//checar
+            DocumentLineItem.CESTCode = -1;
+            DocumentLineItem.VisualOrder =  index;
+            DocumentLineItem.PriceSource = ((data.TaxCode == "IEPSTBS") ? "dpsActivePriceList" : "dpsManual");
+            DocumentLineItem.Document_ApprovalRequests =  [];
+            DocumentLineItem.LineTaxJurisdictions = [];
+            DocumentLineItem.DocumentLineAdditionalExpenses = [];		
+    
+            if(data.TaxCode == "IV/EPBS" ||  data.TaxCode == "IEPSTBS"){
+                
+                var LineTaxJurisdictionsItem = new Object();
+                    LineTaxJurisdictionsItem.JurisdictionCode =  (data.TaxCode == "IEPSTBS") ? "IVATRA00"   : "IVATRA16" ;
+                    LineTaxJurisdictionsItem.JurisdictionType = 3;
+                    LineTaxJurisdictionsItem.TaxRate = (data.TaxCode == "IEPSTBS") ? 0.0   : 16.0 ;
+                    LineTaxJurisdictionsItem.TaxAmount = ((data.TaxCode == "IEPSTBS") ? 0.0 :  (data.preciobase * .16)) ;
+                    LineTaxJurisdictionsItem.LineNumber = index;
+                    LineTaxJurisdictionsItem.RowSequence = index +1;
+                    LineTaxJurisdictionsItem.ExternalCalcTaxRate = 0.0;
+                    LineTaxJurisdictionsItem.ExternalCalcTaxAmount = 0.0;
+                    LineTaxJurisdictionsItem.ExternalCalcTaxAmountFC = 0.0;
+                    LineTaxJurisdictionsItem.ExternalCalcTaxAmountSC =  0.0;
+                    DocumentLineItem.LineTaxJurisdictions.push(LineTaxJurisdictionsItem);
+    
+                var DocumentLineAdditionalExpensesItem = new Object();
+                    DocumentLineAdditionalExpensesItem.LineNumber = index;
+                    DocumentLineAdditionalExpensesItem.GroupCode = 0;
+                    DocumentLineAdditionalExpensesItem.ExpenseCode =  1;
+                    DocumentLineAdditionalExpensesItem.LineTotal = (U_VentaIEPS * Quantity);
+                    DocumentLineAdditionalExpensesItem.LineTotalFC = 0.0;
+                    DocumentLineAdditionalExpensesItem.TaxCode = data.TaxCode;
+                   
+                    DocumentLineAdditionalExpensesItem.TaxType = "aext_NormalTax";
+                    if(data.TaxCode == "IV/EPBS"){
+                        var LineExpenseTaxJurisdictionItem = new Object();
+                        LineExpenseTaxJurisdictionItem.JurisdictionCode =  "IVATRA16" ;
+                        LineExpenseTaxJurisdictionItem.JurisdictionType = 3;
+                        LineExpenseTaxJurisdictionItem.TaxRate = (data.TaxCode == "IEPSTBS") ? 0.0   : 16.0 ;
+                        LineExpenseTaxJurisdictionItem.TaxAmount = ((data.TaxCode == "IEPSTBS") ? 0.0 :  (Math.round(data.IEPS_BS_S) * .16)) ;
+                        LineExpenseTaxJurisdictionItem.LineNumber = index;
+                        LineExpenseTaxJurisdictionItem.RowSequence = index +1;
+                        LineExpenseTaxJurisdictionItem.ExternalCalcTaxRate = 0.0;
+                        LineExpenseTaxJurisdictionItem.ExternalCalcTaxAmount = 0.0;
+                        LineExpenseTaxJurisdictionItem.ExternalCalcTaxAmountFC = 0.0;
+                        LineExpenseTaxJurisdictionItem.ExternalCalcTaxAmountSC =  0.0;
+                        DocumentLineAdditionalExpensesItem.LineExpenseTaxJurisdictions = [];
+                        DocumentLineAdditionalExpensesItem.LineExpenseTaxJurisdictions.push(LineExpenseTaxJurisdictionItem);
+                    }
+                    DocumentLineItem.DocumentLineAdditionalExpenses.push(DocumentLineAdditionalExpensesItem);
+                    
+            }
+            DocumentLines.push(DocumentLineItem);
+            
+            var DocumentLinesjsonString= JSON.stringify(DocumentLineItem);
+            console.log("ANTES DEL J: ", DocumentLineItem);
+         });
+         Document.DocumentLines= DocumentLines;
+         Document.isUpdate = isUpdate;
+         if(isUpdate){
+            Document.DocEntry = DocEntry;
+            Document.DocNum =  DocNum;
+            Document.NumAtCard = NumAtCard;
+         }
+         var jsonString= JSON.stringify(Document);
+         console.log("json string de hugp: ", jsonString);
+         $.ajax({
+              url: "/api/v1/venta/cotizador",
+              type: "POST",
+              dataType: "json",
+              data: jsonString,
+              contentType: "application/json; charset=utf-8",
+              traditional: true,	
+        error :function(jqXHR,error, errorThrown) {
+            var message_error = "";
+                    try{
+                        message_error = jqXHR.responseJSON.error.message.value;
+                        console.log(jqXHR.responseJSON.error.message.value)
+                    }catch(error){
+                        console.log(error);
+                      message_error = "Uno o varios campos no son validos, corroborar información";
+                    }
+                  console.log("jqXHR", jqXHR);
+                  console.log("error", error);
+                  console.log("errorThrown", errorThrown);
+                  
+                  $("#generar").removeClass("disabled");
+        
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: message_error,
+                  footer: ''
+                })
+            
+                
+                  },
+                beforeSend: function () {
+                            $("#caja21").html("Procesando, espere por favor...");
+                    },
+              success: function (response) {
+                 
+                 try{
+                    response  = JSON.parse(response)
+                  }catch(error){
+                      
+                  }
+                 $('#ticket').modal('show');
+                 if(carta){
+                        $('#ticket > .modal-dialog  ').addClass('modal-xl');
+                 }
+                 $('#ticket_body').html(response);
+                
+                 //console.log("response que trae por segunda instancia: ", response);
+                 pinta_ticket(response);
+                 $("#generar").removeClass("disabled");
+                //updateOptions(respose);
+                ;
+                
+                
+              },
+                complete: function(data) {
+                    
+                },
+            });
+    }
+    
+     
+    });
+    
+    $(document).on('click','.open_detail', function(){ //esta función se ejecutará en todos los casos
+        var name = $(this).parent().attr('data-codigo')+' | '+$(this).parent().attr('data-nombre');
+        $.get( "/genera_detalle/"+$(this).parent().attr('data-codigo'), function( data ) {
+        $( ".result_detail" ).html( data );
+        $('#detail').modal('show');
+        $(".nombre_product").html(name);
+    });
+    });
+    var newClient = function(){
+        $("#newClient").attr({'disabled':'disabled'});
+        $.ajax({
+          url: "/api/v1/venta/clientes",
+          type: "POST",
+          dataType: "json",
+          data: JSON.stringify({ name: $("#name").val(), email : $("#email").val(), phone : $("#phone").val(), origen : 2, SalesPersonCode : SalesPersonCode }),
+          contentType: "application/json; charset=utf-8",
+          traditional: true,	
+    error :function( data ) {
+        try{
+                data  = JSON.parse(data)
+              }catch(error){
+                  
+              }
+    console.log(JSON.parse(data.responseText));
+    var message = JSON.parse(data.responseText);
+    try{
+    if(message.errors.email[0] == ['The email has already been taken.']){
+        Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'El correo Electrónico ya esta en uso',
+              footer: ''
+            })
+    }else{
+        Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Uno o varios campos no son validos, corroborar información',
+              footer: ''
+            })
+    }
+    }catch(error){
+        Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Uno o varios campos no son validos, corroborar información',
+              footer: ''
+            })
+    }
+        
+            
+              },	 
+          success: function (response) {
+              try{
+                response  = JSON.parse(response)
+              }catch(error){
+                  
+              }
+            //updateOptions(respose);
+            console.log(response.CardCode);
+            console.log("crealo");
+    //var selectize = select_client[0].selectize;
+    console.log("selectize: ", response);
+    //selectize.addOption({value: response.CardCode, text:  $("#name").val() +' | '+ $("#email").val()});
+    //selectize.addItem(response.CardCode);
+    //selectize.refreshOptions();
+    //$("#select-to-selectized").val($("#name").val() +' | '+ $("#email").val());
+    //selectize.setValue(response.CardCode);
+    
+    //$("#select-to-selectized").val($("#name").val() +' | '+ $("#email").val());
+    //selectize.setValue(selectize.search(response.CardCode).items[0].id);
+    selectize.addOption({"id":999,"cardcode":response.CardCode,"name":response.CardName,"lictradnum":"HEMH8509235T3","email":response.EmailAddress,"listnum":1,"updated_at":"2022-08-26T00:30:38.000000Z","created_at":"2022-08-26T00:30:38.000000Z"});
+    selectize.addItem(response.CardCode);  selectize.setValue(response.CardCode); 
+    
+    
+    $("#name").val("");
+    $("#email").val("");
+    $("#phone").val(""); 
+    $('#nuevo_usuario').modal('hide');
+            
+          },
+            complete: function(data) {
+                $("#newClient").removeAttr( "disabled" );
+            },
+        });
+    };
+    
+    $("#reiniciar").on('click',function(){
+        var table = $('#publico').DataTable();
+     
+    table
+        .clear()
+        .draw();
+        $(".sub_total").html("$0.00");
+        $(".impuestos").html("$0.00");
+        $(".total").html("$0.00");
+        select_client[0].selectize.enable();	
+        select_client[0].selectize.clear();
+        select_articulo[0].selectize.clear();
+        select_entrega[0].selectize.clear();
+        select_entrega[0].selectize.setValue('C-00001');
+        //setTimeout(location.reload(), 2000);
+      
+    });
+    $("#cancelar").on('click',function(){
+        Swal.fire({
+      title: '¿Estas seguro de limpiar la pantalla?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, bórralo!',
+      cancelButtonText: 'Cancelar'
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminado!',
+          'Su cotización ha sido eliminado.',
+          'success'
+        )
+        var table = $('#publico').DataTable();
+     
+    table
+        .clear()
+        .draw();
+        $("#comentario").val('');
+        $(".sub_total").html("$0.00");
+        $(".impuestos").html("$0.00");
+        $(".total").html("$0.00");
+        select_client[0].selectize.enable();
+        select_client[0].selectize.clear();
+        select_articulo[0].selectize.clear();
+        //select_entrega[0].selectize.clear();
+        select_client[0].selectize.setValue('C-00001');
+        //setTimeout(location.reload(), 2000);
+      }
+    })
+    });
+    $("#newClient").on('click',function(){newClient();});
+      // Handler for .ready() called.
+ /* $.ajax({
+      url: "/api/v1/venta/clientes/1",
+      type: "GET",
+      dataType: "json",
+      
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			response  = JSON.parse(response)
+		  }catch(error){
+			  
+		  }
+		  $("#select-to").selectize({
+  persist: false,
+  maxItems: 1,
+  valueField: "email",
+  labelField: "name",
+  searchField: ["name", "email"],
+  create: true,
+   inputClass: 'selectize-input', 
+    dropdownParent: "body",
+  options: response,
+   
+  render: {
+    item: function (item, escape) {
+      return "<div>" + (item.name ? '<span class="name">' + escape(item.name) + "</span> | " : "") + (item.email ? '<span class="email">' + escape(item.email) + "</span>" : "") + "</div>";
+    },
+    option: function (item, escape) {
+      var label = item.name || item.email;
+      var caption = item.name ? item.email : null;
+      return "<div>" + '<span class="label">' + escape(label) + "</span> | " + (caption ? '<span class="caption">' + escape(caption) + "</span>" : "") + "</div>";
+    },
+  },
+  createFilter: function (input) {
+    var match, regex;
+
+    // email@address.com
+    regex = new RegExp("^" + REGEX_EMAIL + "$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[0]);
+
+    // name <email@address.com>
+    regex = new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[2]);
+
+    return false;
+  },
+  create: function (input) {
+    if (new RegExp("^" + REGEX_EMAIL + "$", "i").test(input)) {
+      return { email: input };
+    }
+    var match = input.match(new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i"));
+    if (match) {
+      return {
+        email: match[2],
+        name: $.trim(match[1]),
+      };
+    }
+    alert("Invalid email address.");
+    return false;
+  },
+});
+		
+      },
+    });
+	*/
+var select_client = $("#select-to").selectize({
+  persist: false,
+  maxItems: 1,
+  valueField: "cardcode",
+  labelField: "name",
+  searchField: ["cardcode","name", "email"],
+  create: false,
+  inputClass: 'selectize-input', 
+  dropdownParent: "body",
+  items: [{ id: 'C-00001', text: 'MOSTRADOR EXPO ',value: 'C-00001' }],
+  options: [ {
+        text: 'MOSTRADOR EXPO ',
+        value: 'C-00001'
+    }],
+   load: function (query, callback) {
+    if (!query.length && query.length < 3) return callback();
+    $.ajax({
+      url: "/api/v1/venta/clientes/1",
+      type: "GET",
+      dataType: "json",
+      data: {
+        q: query,
+        page_limit: 10,
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			response  = JSON.parse(response)
+		  }catch(error){
+			  
+		  }
+		//updateOptions(respose);
+        callback(response);
+		
+      },
+    });
+   },
+     onChange: function(value) {
+	  console.log('Selectize changed: ' + value);
+   },
+
+  create: function (query, callback) {
+    if (!query.length) return callback();
+    $.ajax({
+      url: "/api/v1/venta/clientes/1",
+      type: "GET",
+      dataType: "json",
+      data: {
+        q: query,
+        page_limit: 10,
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			response  = JSON.parse(response)
+		  }catch(error){
+			  
+		  }
+		//updateOptions(respose);
+        callback(response);
+		
+      },
+    });
+   },
+  render: {
+    item: function (item, escape) {
+      return "<div class='cliente' data-listnum='"+item.listnum+"'  data-email='"+item.email+"' data-name='"+item.name+"' >" + (item.name ? '<span class="name">' + escape(item.name) + "</span>  " : "") + (item.email ? '| <span class="email">' + escape(item.email) + "</span>" : "") + "</div>";
+    },
+    option: function (item, escape) {
+      var label = item.name || item.email;
+      var caption = item.name ? item.email : null;
+      return "<div style='height : 3.5vh; font-size: .8rem;vertical-align: middle;' >" + '<span class="label">' + escape(label) + "</span>  " + (caption ? '<span class="caption">' + escape(caption) + "</span>" : "") + "</div>";
+    },
+  },
+  createFilter: function (input) {
+    var match, regex;
+
+    // email@address.com
+    regex = new RegExp("^" + REGEX_EMAIL + "$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[0]);
+
+    // name <email@address.com>
+    regex = new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[2]);
+
+    return false;
+  },
+  create: function (input) {
+    if (new RegExp("^" + REGEX_EMAIL + "$", "i").test(input)) {
+      return { email: input };
+    }
+    var match = input.match(new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i"));
+    if (match) {
+      return {
+        email: match[2],
+        name: $.trim(match[1]),
+      };
+    }
+    alert("Invalid email address.");
+    return false;
+  },
+});
+var selectize = select_client[0].selectize;
+selectize.addOption({value:'C-00001', text:  'MOSTRADOR EXPO '});
+selectize.addItem('C-00001'); selectize.setValue('C-00001');
+//var data_articulo = "";
+$(".cliente").attr('data-listnum','1')
+var select_articulo = $("#select-to-articulo").selectize({
+  persist: false,
+  maxItems: 1,
+  valueField: "codigo",
+  labelField: "nombre",
+  searchField: ["nombre", "codigo"],
+create:function (input, callback){
+                if (!input.length) return callback();
+	
+	callback(data_articulo);
+            },
+   inputClass: 'selectize-input', 
+    dropdownParent: "body",
+  options: [],
+  
+   load: function (query, callback) {
+	   
+    if (!query.length && query.length < 5) return callback();
+	
+	$.ajax({
+      url: "/api/v1/venta/productos/1",
+      type: "GET",
+      dataType: "json",
+      data: {
+        q: query,
+        page_limit: 10,
+		listnum : $(".cliente").attr('data-listnum'),
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			  //data_articulo = response;
+			//console.log(data_articulo);
+			response  = JSON.parse(response)
+		  }catch(error){
+			  
+		  }
+		  /*$.each(response, function(i, item) {
+			  console.log(Date.now() >= Date.parse(response[i].descuentovalidode);
+			console.log(Date.parse(response[i].descuentovalidode));
+		});*/
+		//updateOptions(respose);
+        callback(response);
+		
+      },
+    });
+
+    
+   },
+  render: {
+    item: function (item, escape) {
+		var data = JSON.stringify(item);
+      return "<div  class='data' data-codigo='"+escape(item.codigo)+"' data-TaxCode='"+escape(item.TaxCode)+"' data-descuento='"+escape(item.descuento)+"' data-articulo='"+ escape(data)+"'>"+"  "+  (item.nombre ? '<span class="codigo">' + escape(item.codigo) + "</span> | " : "") + (item.nombre ? '<span class="nombre">' + escape(item.nombre) + "</span>" : "") + "</div>";
+    },
+    option: function (item, escape) {
+      var label = item.codigo || item.nombre;
+      var caption = item.nombre ? item.nombre : null;
+	  
+      return "<div style='height : 3.5vh; font-size: .8rem;vertical-align: middle;'>"+"<img width='20px' src='"+item.image_thumbnail+"'/> " + '<span class="label">' + escape(label) + "</span>"+" | " + (caption ? '<span class="caption">' + escape(caption) + "</span>" : "") + "</div>";
+    },
+  },
+  createFilter: function (input) {
+    var match, regex;
+
+    // email@address.com
+    regex = new RegExp("^" + REGEX_EMAIL + "$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[0]);
+
+    // name <email@address.com>
+    regex = new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i");
+    match = input.match(regex);
+    if (match) return !this.options.hasOwnProperty(match[2]);
+
+    return false;
+  },
+  create: function (input) {
+    if (new RegExp("^" + REGEX_EMAIL + "$", "i").test(input)) {
+      return { email: input };
+    }
+    var match = input.match(new RegExp("^([^<]*)\<" + REGEX_EMAIL + "\>$", "i"));
+    if (match) {
+      return {
+        email: match[2],
+        name: $.trim(match[1]),
+      };
+    }
+    alert("Invalid email address.");
+    return false;
+  },
+    onChange: function(value) {
+		var counter = 1;
+		var sum = 0;
+		var find = false;
+		$('tr').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  console.log($(this).attr("data-codigo"));
+  if($(this).attr("data-codigo") == $(".data").attr("data-codigo") ){
+	  console.log('hi');
+	  console.log($(this).find(".quantity").find(".input-group").find(".quantity-field").html());
+	  $(this).find( ".button-plus" ).trigger( "click" );
+	  find = true;
+  } 
+});
+if(!find){
+	             oTable.row.add( JSON.parse($(".data").attr("data-articulo"))).draw(false);
+			
+}
+			var stock = 0;
+    		var data_stock_domicilio = JSON.parse( localStorage.getItem('stock_domicilio'));
+	var data_stock_piso = JSON.parse( localStorage.getItem('stock_piso'));
+		if($("#select-to-entrega").val() == "200"){
+		stock = data_stock_domicilio.filter(function(items){
+			return items.ItemCode == value;         
+		})		
+		}else{
+		stock = data_stock_piso.filter(function(items){
+			return items.ItemCode == value;         
+		})	
+		}
+		console.log('stock');
+		console.log(stock);
+		if(stock.length > 0){
+		$("[data-codigo='" +value+ "']").find('.stock').html(parseInt(stock[0]['OnHand']));
+		}
+		$('.input-group').off('click', '.button-plus');
+		
+		$('.input-group').off('click', '.button-minus');
+			
+ $('.input-group').on('click', '.button-plus', function(e) {
+	console.log('+');
+        incrementValue(e);
+    });
+
+    $('.input-group').on('click', '.button-minus', function(e) {
+		console.log('-');
+        decrementValue(e);
+    });
+	$('#publico tbody').on( 'click', '.eliminado', function () {
+    oTable
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw(false);
+		var sub_total = 0;
+	var total = 0;
+		
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseFloat($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseFloat($(this).attr("data-importe-con-impuestos"));
+});
+
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+$(".impuestos").html(dollarUS.format(total - sub_total));
+} );
+        counter++;
+var sub_total = 0;
+	var total = 0;
+		
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseFloat($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseFloat($(this).attr("data-importe-con-impuestos"));
+});
+
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+$(".impuestos").html(dollarUS.format(total - sub_total));
+var obj = $(this);
+obj[0].setValue("");
+          },
+});
+$(".selectize-control:eq(2)").addClass("form-control");
+$(".selectize-control:eq(1)").addClass("form-control");
+$(".selectize-control:eq(0)").addClass("form-control");
+
+$(".selectize-input:eq(2)").addClass("selectize-input-2");
+$(".selectize-input:eq(1)").addClass("selectize-input-2");
+$(".selectize-input:eq(0)").addClass("selectize-input-2");
+
+</script>
+<script src="/js/quagga.min.js"></script>
+
+<script>
+if(localStorage.getItem("articulos") === null){
+$.ajax({
+      url: "/api/v1/venta/productos/1",
+      type: "GET",
+      dataType: "json",
+      data: {
+        page_limit: 99999,
+		listnum : 1,
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			  data_articulo = response;
+			  data_articulo  = JSON.parse(response);
+			  
+			console.log(data_articulo);
+			
+		  }catch(error){
+			  
+		  }
+				  window.localStorage.setItem("articulos", JSON.stringify(data_articulo));
+		
+		
+      },
+    });
+}
+$.ajax({
+      url: "/api/v1/venta/inventarios/200.2",//200.2
+      type: "GET",
+      dataType: "json",
+	  async:true,
+      data: {
+        page_limit: 99999,
+		listnum : 1,
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			  data_stock_piso = response['data'];
+			  data_stock_piso  = JSON.parse(response['data']);
+			  
+			console.log(data_stock_piso);
+			
+		  }catch(error){
+			  
+		  }
+			///if(localStorage.getItem("stock_piso") === null){
+				  window.localStorage.setItem("stock_piso", JSON.stringify(data_stock_piso));
+			///}
+		
+      },
+    });
+	$.ajax({
+      url: "/api/v1/venta/inventarios/200",//200
+      type: "GET",
+      dataType: "json",
+	   async:true,
+      data: {
+        page_limit: 99999,
+		listnum : 1,
+        apikey: "w82gs68n8m2gur98m6du5ugc",
+      },
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+			  data_stock_domicilio = response['data'];
+			  data_stock_domicilio  = JSON.parse(response['data']);
+			   data_stock_piso = response['data'];
+			  data_stock_piso  = JSON.parse(response['data']);
+			console.log(data_stock_domicilio);
+			
+		  }catch(error){
+			  
+		  }
+			//if(localStorage.getItem("stock_domicilio") === null){
+
+				  window.localStorage.setItem("stock_domicilio", JSON.stringify(data_stock_domicilio));
+			//}
+		
+      },
+    });
+$(document).ready(function(){
+	setTimeout(function(){
+		console.log('ready search!');	
+		$('.searchmenu').html('<button type="button" class="btn btn-outline-primary float-right" id="open_historico"><i class="fa fa-search" aria-hidden="true"></i> </button>');	
+		
+}, 500);
+	console.log("ejecuta codigo de mobiscroll");
+	$('#demo-remove-undo').mobiscroll('remove', 3);
+	//oTable = $('#publico').DataTable(); 
+	
+	$("#open_lector").on("click",function(){
+	$('#lector').modal('show');
+	leer_codigo_de_barra();
+});
+$("#open_add_user").on("click",function(){
+	$('#nuevo_usuario').modal('show');	
+});
+
+$("#cerrar_historico").on("click",function(){
+	$('#generar').html('<i class="fa fa-print"></i>Generar Cotización');
+	
+isUpdate =false;
+select_client[0].selectize.enable();	
+DocEntry = "";
+DocNum = "";
+NumAtCard = "";
+	oTable
+         .clear()
+        .draw(false);
+$(".total").html('$0.00');
+$(".sub_total").html('$0.00');
+$(".impuestos").html('$0.00');	
+	select_client[0].selectize.clear();
+	select_articulo[0].selectize.clear();
+	//select_entrega[0].selectize.clear();
+	select_client[0].selectize.setValue('C-00001');
+});
+$(document).on('click','#open_historico', function(){ 	
+	var table = $('#publico').DataTable();
+ 
+table
+    .clear()
+    .draw();
+	$('#historico').modal('show');
+	$("#buscar").val('');
+	$("#comentario").val('');
+		$('.history').html('<div class="d-flex justify-content-center"><div class="spinner-grow text-warning text-center" role="status"><span class="sr-only">Loading...</span></div></div>	');
+
+$.ajax({
+      url: "/api/v1/venta/cotizador-historico/1",
+      type: "GET",
+      dataType: "json",
+      
+      error: function () {
+        //callback();
+      },
+      success: function (response) {
+		  try{
+		//response  = JSON.parse(response);
+		 $('.history').html('');
+$.each(response, function(i, item) {
+	$('.history').append($('<div class="card info-card" style="width: 100%;" data-VatSum="'+response[i].VatSum+'" data-DocTotal="'+response[i].DocTotal+'" data-DocNum="'+response[i].DocNum+'" data-DocEntry="'+response[i].DocEntry+'" data-CardName="'+response[i].CardName+'"  data-CardCode="'+response[i].CardCode+'"   data-DocTime="'+response[i].DocTime+'"  data-NumAtCard="'+response[i].NumAtCard+'" data-Comments="'+response[i].Comments+'"  data-DocDate="'+response[i].DocDate+'"><div class="card-body" style="width: 100%;"><h5 class="card-title">No. '+response[i].DocNum+' Referencia: '+response[i].NumAtCard+'</h5> <small class="float-right">Fecha: '+response[i].DocDate+' Hora: '+response[i].DocTime+' hrs</small><br/><p style="margin-top: 0;margin-bottom: 0rem;">'+response[i].CardCode+' | '+response[i].CardName+' </p><p style="margin-top: 0;margin-bottom: 0rem;">Total: $ '+response[i].DocTotal+' </p></div></div>').data(response[i]));
+	
+});
+$( ".history>.card" ).click(function() {
+	var counter = 1;
+		var sum = 0;
+		var find = false;
+	oTable
+         .clear()
+        .draw(false);
+		var sub_total = 0;
+	var total = 0;
+  //alert($(this).attr("data-DocNum"));
+  $('.card').removeClass('bg-info');
+  $(this).addClass('bg-info');
+	var selectize = select_client[0].selectize;
+	var selectize2 = select_entrega[0].selectize;
+	$("#comentario").val($(this).attr("data-Comments"));
+	
+	//selectize.addOption({value:$(this).attr("data-CardCode"), text:  $(this).attr("data-CardName")}); 
+	//selectize.addItem($(this).attr("data-CardCode")); selectize.setValue($(this).attr("data-CardCode"));
+	selectize.addOption({"id":999,"cardcode":$(this).attr("data-CardCode"),"name":$(this).attr("data-CardName"),"lictradnum":"HEMH8509235T3","email":response.EmailAddress,"listnum":1,"updated_at":"2022-08-26T00:30:38.000000Z","created_at":"2022-08-26T00:30:38.000000Z"});
+    selectize.addItem($(this).attr("data-CardCode"));  selectize.setValue($(this).attr("data-CardCode")); 
+	DocEntry = $(this).attr("data-DocEntry");
+	DocNum = $(this).attr("data-DocNum");
+	NumAtCard = $(this).attr("NumAtCard");
+	DocTotal = $(this).attr("data-DocTotal");
+	var imp = 0;
+	var sub = 0;
+	var tot = 0;
+	
+	
+	$.each($(this).data("DocumentLines"), function(i, item) {
+		
+		 data_stock_domicilio = JSON.parse( localStorage.getItem('stock_domicilio'));
+		 data_stock_piso = JSON.parse( localStorage.getItem('stock_piso'));
+		 data_articulo  = JSON.parse( localStorage.getItem('articulos'));
+		var iva_solo = (item.DocumentLineAdditionalExpenses.length == 1 ? item.DocumentLineAdditionalExpenses[0].LineTotal : 0 );
+		var stock = 0;
+		sub += (item.Price + iva_solo) * item.Quantity;
+		//select_entrega[0].selectize.setValue('C-00005');
+		if(item.WarehouseCode == "200"){
+		stock = data_stock_domicilio.filter(function(items){
+			return items.ItemCode == item.ItemCode;         
+		})		
+		}else{
+		stock = data_stock_piso.filter(function(items){
+			return items.ItemCode == item.ItemCode;         
+		})	
+		}
+try{
+	var itemi = data_articulo.filter(function(items){
+			return items.codigo == item.ItemCode && items.TIPO == 1;         
+		})
+		oTable.row.add(itemi[0]).draw(false);
+}catch(error){
+	console.log('error');
+		console.log(item.ItemCode);
+		
+	console.log('error');
+		console.log(itemi);
+		console.log(error)	  
+		  }	
+		
+		console.log('stock');
+		
+		console.log(stock);
+	
+		$("[data-codigo='" +item.ItemCode+ "']").find('.stock').html(parseInt(stock[0]['OnHand']));
+		$('.input-group').off('click', '.button-plus');
+		$("[data-codigo='" +item.ItemCode+ "']").find('.quantity-field').val(item.Quantity);
+		$("[data-codigo='" +item.ItemCode+ "'] > .importe").html(dollarUS.format($("[data-codigo='" +item.ItemCode+ "'] > .importe").attr('data-importe-original')*item.Quantity));
+		//$("[data-codigo='" +item.ItemCode+ "'] > .importe").attr({'data-importe-original':$("[data-codigo='" +item.ItemCode+ "'] > .importe").attr('data-importe-original')*item.Quantity});
+		//$("[data-codigo='" +item.ItemCode+ "'] > .importe").attr(dollarUS.format($("[data-codigo='" +item.ItemCode+ "'] > .importe").attr('data-importe-original')*item.Quantity));
+		
+		$(".total").html(DocTotal);
+		
+		console.log('imp');
+
+		$('.input-group').off('click', '.button-minus');
+		
+ $('.input-group').on('click', '.button-plus', function(e) {
+	console.log('+');
+        incrementValue(e);
+    });
+
+    $('.input-group').on('click', '.button-minus', function(e) {
+		console.log('-');
+        decrementValue(e);
+    });
+	$('#publico tbody').on( 'click', '.eliminado', function () {
+    oTable
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw(false);
+		var sub_total = 0;
+	var total = 0;
+		
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseFloat($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseFloat($(this).attr("data-importe-con-impuestos"));
+});
+
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+$(".impuestos").html(dollarUS.format(total - sub_total));
+} );
+        counter++;
+var sub_total = 0;
+	var total = 0;
+		
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseFloat($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseFloat($(this).attr("data-importe-con-impuestos"));
+});
+
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+
+$(".impuestos").html(dollarUS.format(total - sub_total));	
+
+$('#generar').html('<i class="fa fa-print"></i> Re imprimir Cotización'); 
+isUpdate = true;
+select_client[0].selectize.disable();
+	});
+	//$(".impuestos").html(dollarUS.format($(this).attr("data-DocTotal") - sub_total));
+
+	//$('.total').html(dollarUS.format($(this).attr("data-DocTotal")));
+	$(".sub_total").html(dollarUS.format(parseFloat(sub)));	
+	$(".impuestos").html(dollarUS.format($(this).attr("data-VatSum")));	
+	///+
+	console.log($(this).attr("data-VatSum") );
+ console.log($(this).data("DocumentLines") );
+ $(".total").html(dollarUS.format(DocTotal));
+});	 
+
+		}catch(error){
+			  console.log(error);
+		  }
+		  /*$.each(response, function(i, item) {
+			  console.log(Date.now() >= Date.parse(response[i].descuentovalidode);
+			console.log(Date.parse(response[i].descuentovalidode));
+		});*/
+		//updateOptions(respose);
+        
+      },
+    });
+});
+
+});
+
+		var leer_codigo_de_barra = function(){
+			
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector('#camera')    // Or '#yourElement' (optional)
+            },
+            decoder: {
+                readers: ["upc_reader"]
+            }
+        }, function (err) {
+            if (err) {
+                console.log(err);
+                return
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function (data) {
+			alert(data.codeResult.code);
+            console.log(data.codeResult.code);
+            document.querySelector('#resultado').innerText = data.codeResult.code;
+        });
+		$(".drawingBuffer").attr({'display':'none !important'});
+		
+		};
+		var url_api = "/api/v1/venta/lista_precio/1";
+var url_download = "{{ asset('/file/Boletín ofertas  Mayo-Julio - Publico.xlsx') }}";
+var visible = false;
+
+
+                        $( document ).ready(function() {
+							$('#ticket').on('hidden.bs.modal', function (e) {
+     setTimeout(function(){
+			location.reload();
+		},1000); 
+});
+							/*$('#reiniciar').on('click',function){
+								location.reload();
+							});*/
+$('#buscar').keyup(function(){
+               //$('#example').DataTable().column(0).search(this.value.trim(), false, false).draw();
+                      var g = $(this).val().toLowerCase();
+					  console.log(g);
+						 $(".history > .card").each(function() {
+						if ($(this).attr('data-CardName').toLowerCase().indexOf(g) >= 0 || $(this).attr('data-CardCode').toLowerCase().indexOf(g) >= 0 || $(this).attr('data-DocTotal').toLowerCase().indexOf(g) >= 0 || $(this).attr('data-DocTime').toLowerCase().indexOf(g) >= 0 || $(this).attr('data-NumAtCard').toLowerCase().indexOf(g) >= 0){
+							$(this).show();
+						}else{
+							$(this).hide();
+						}
+					console.log($(this).attr('data-CardName'));
+					
+    });
+            });
+if( navigator.userAgent.match(/Android/i)
+|| navigator.userAgent.match(/webOS/i)
+|| navigator.userAgent.match(/iPhone/i)
+|| navigator.userAgent.match(/iPad/i)
+|| navigator.userAgent.match(/iPod/i)
+|| navigator.userAgent.match(/BlackBerry/i)
+|| navigator.userAgent.match(/Windows Phone/i)){
+//alert("You're using Mobile Device!!");	
+	//launchFullScreen($(document.documentElement));
+}
+
+
+	
+
+                          $.ajaxSetup({
+              headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            });
+              var id_ = "";
+                       $('#publico').DataTable({
+                            'dom': 'Blfrtip',
+                            responsive: true,
+             processing: true,
+             serverSide: false,
+             deferRender: true,
+			 order: [],
+			 aaSorting: [],
+			  pagingType: 'full_numbers',
+			   columns: [
+              { data: 'codigo', name: 'codigo', className: "my_class" },
+              //{ data: 'codigoa', name: 'codigo_antiguo', className: "my_class" },
+
+              { data: 'nombre', name: 'nombre', className: "open_detail"}, 
+              { data: 'linea', name: 'linea', className: "my_class" },
+              { data: 'precioofertac_impuestos', name: 'precioofertac_impuestos' , className: "my_class",  render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+              { data: 'IEPS_BS_C', name: 'IEPS_BS_C' ,  className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IEPS_8_C', name: 'IEPS_8_C' , className: "my_class" ,render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IVA_16_C', name: 'IVA_16_C' , className: "my_class" ,render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IVA_0_C', name: 'IVA_0_C' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+
+
+              { data: 'preciobase', name: 'preciobase' , className: "my_class precio_unitario" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'descuento', name: 'descuento' , className: "descuento" , render: $.fn.dataTable.render.number(',', '.', 2, '', '%')},
+
+              { data: 'precioofertas_impuestos', name: 'precioofertas_impuestos' , render : function ( data, type, row, meta ) {
+      return '<div class="input-group w-auto justify-content-end align-items-center"> <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm mx-1 " data-field="quantity"> <input type="number" readonly step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25"> <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity"> </div>';
+    }},
+
+              { data: 'IEPS_BS_S', name: 'IEPS_BS_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IEPS_8_S', name: 'IEPS_8_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IVA_16_S', name: 'IVA_16_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+              { data: 'IVA_0_S', name: 'IVA_0_S' , className: "my_class" , render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+
+              { data: 'preciobase', name: 'preciobase' , className: "my_class" ,  render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+
+              { data: 'preciobase', name: 'preciobase' , className: "stock", render : function ( data, type, row, meta ) {
+      return '5 pz';
+    }},
+              { data: 'preciobase', name: 'preciobase' , className: "quantity", render : function ( data, type, row, meta ) {
+      return '<div class="input-group w-auto justify-content-end align-items-center"> <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm mx-1 " data-field="quantity"> <input type="number" readonly step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25"> <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity"> </div>';
+    }},
+              { data: 'precioofertas_impuestos', name: 'preciobase' , className: "importe", render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' )},
+			  { data: 'preciobase', name: 'preciobase' , className: "accion", render : function ( data, type, row, meta ) {
+      return '<div class="input-group w-auto justify-content-end align-items-center"><button class="btn btn-outline-danger eliminado" id="eliminado"><i class="fa fa-trash" aria-hidden="true"></i></button></div>';
+    }},
+
+
+            ],
+			columnDefs: [
+            {
+                targets: -1,
+                data: null,
+                defaultContent: ' <div class="col-lg-2"> <div class="input-group"> <span class="input-group-btn"> <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field=""> <span class="glyphicon glyphicon-minus"></span> </button> </span> <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10" min="1" max="100"> <span class="input-group-btn"> <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field=""> <span class="glyphicon glyphicon-plus"></span> </button> </span> </div> </div>',
+            },
+        ],
+			  lengthMenu : [
+                        [ 50,100, -1 ],
+                        [ '50 rows','100 rows', 'Mostrar todos' ]
+                ], 
+             
+             "pageLength": 50,
+                            
+               'createdRow': function( row, data, dataIndex ) {
+				   
+                    $(row).attr('data-info', JSON.stringify(data));
+                    $(row).attr('data-codigo', data['codigo']);
+					$(row).attr('data-TaxCode', data['TaxCode']);
+					
+					$(row).attr('data-nombre', data['nombre']);
+
+					$(row).attr('id', 'demo-remove-undo');
+					
+					
+					var importe = $(row).find('.importe');
+					var precio_base = data['preciobase'];
+					importe.attr({'data-importe':data['precioofertas_impuestos'].toString().replace("$", "").replace(",", "")});
+					importe.attr({'data-importe-original':data['precioofertas_impuestos'].toString().replace("$", "").replace(",", "")});
+					importe.attr({'data-importe-original-con-impuestos':data['precioofertac_impuestos'].toString().replace("$", "").replace(",", "")});
+					var fix = data['precioofertac_impuestos'].toString().replace("$", "").replace(",", "");
+					    fix = fix.slice(0,fix.indexOf(".")+3);
+						fix = parseFloat(fix);
+					importe.attr({'data-importe-con-impuestos':fix});
+					$(row).find('#eliminado').attr('data-codigo-button', data['codigo']);
+					
+					
+                  },
+                            "language": {
+
+
+   "sProcessing":     "Procesando...",
+   "sLengthMenu":     "Mostrar _MENU_ registros",
+   "sZeroRecords":    "No se encontraron resultados",
+   "sEmptyTable":     "Ningún producto agregado al carrito <i class='fa-solid fa-cart-shopping'></i>",
+   "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+   "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+   "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+   "sSearch":         "Buscar:",
+   "sInfoThousands":  ",",
+   "sLoadingRecords": "Cargando...",
+   "oPaginate": {
+       "sFirst":    "Primero",
+       "sLast":     "Último",
+       "sNext":     "»",
+       "sPrevious": "«"
+   },
+   "oAria": {
+       "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+       "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+   },
+   "buttons": {
+       "copy": "Copiar",
+       "colvis": "Visibilidad"
+   }
+
+                              },
+             
+			    
+
+                          });
+
+             oTable = $('#publico').DataTable();   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
+oTable.columns([3,4,5,6,7,10,11,12,13,14,15]).visible(visible);
+			$("#publico_filter").addClass("d-none");
+            $('#search').keyup(function(){
+               //$('#example').DataTable().column(0).search(this.value.trim(), false, false).draw();
+                oTable.search($(this).val()).draw() ;
+            });
+			jQuery("#publico_length").detach().appendTo('.paginado');
+			$( ".detallada" ).before( "<span> </span>" );
+                          console.log( "ready!" );
+                        });
+						
+						function incrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('div');
+		var tr = $(e.target).closest('tr');
+		var importe = tr.find('.importe');
+		var total_ = tr.find('.total');
+		
+		var descuento = tr.find('.descuento').html().replace("$", "").replace(",", "");
+		var precio_unitario_valor  = tr.find('.importe').attr('data-importe').replace("$", "").replace(",", "");
+		var precio_unitario_original_valor  = tr.find('.importe').attr('data-importe-original').replace("$", "").replace(",", "");
+		var precio_unitario_original_valor_con_impuestos  = tr.find('.importe').attr('data-importe-original-con-impuestos').replace("$", "").replace(",", "");
+		
+		
+        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+        console.log(tr);
+		console.log(precio_unitario_valor);
+        if (!isNaN(currentVal)) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+			 var valor1 = precio_unitario_original_valor * (currentVal + 1);
+			 var valor3 = precio_unitario_original_valor_con_impuestos * (currentVal + 1);
+			 
+		    importe.html(dollarUS.format(valor1));
+			importe.attr({'data-importe':valor1});
+			importe.attr({'data-importe-con-impuestos':valor3});
+			
+        } else {
+            parent.find('input[name=' + fieldName + ']').val(0);
+			 importe.html(0);
+        }
+		var sub_total = 0;
+		var total = 0;
+		$("#eliminado").on('click',function(){
+			var codigo = $(this).attr("data-codigo-button");
+			console.log("ja: ", codigo);
+		oTable
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw(false);
+			$("tr[data-codigo="+codigo+"]").remove();
+	    
+		});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseInt($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseInt($(this).attr("data-importe-con-impuestos"));
+});
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+$(".impuestos").html(dollarUS.format(total - sub_total));
+
+    }
+
+    function decrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('div');
+        var currentVal = parseFloat(parent.find('input[name=' + fieldName + ']').val(), 10);
+		var Val = currentVal -1;
+		console.log(Val);
+var tr = $(e.target).closest('tr');
+		var importe = tr.find('.importe');
+		var descuento = tr.find('.descuento').html().replace("$", "").replace(",", "");
+		var precio_unitario_valor  = tr.find('.importe').attr('data-importe').replace("$", "").replace(",", "");
+		var precio_unitario_original_valor  = tr.find('.importe').attr('data-importe-original').replace("$", "").replace(",", "");
+		var precio_unitario_original_valor_con_impuestos  = tr.find('.importe').attr('data-importe-original-con-impuestos').replace("$", "").replace(",", "");
+		
+		
+        if (!isNaN(currentVal) && currentVal > 0) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+			var valor2 = precio_unitario_original_valor * (currentVal - 1);
+			var valor3 = precio_unitario_original_valor_con_impuestos * (currentVal - 1);
+			
+			 importe.html(dollarUS.format(valor2));
+
+			 importe.attr({'data-importe':(valor2 == 0) ? precio_unitario_valor : valor2});
+			 importe.attr({'data-importe-con-impuestos':(valor3 == 0) ? precio_unitario_valor : valor3});
+			 
+			 
+        } else {
+			
+            parent.find('input[name=' + fieldName + ']').val(0);
+				 var valor2 = precio_unitario_original_valor * (currentVal - 1);
+				 var valor3 = precio_unitario_original_valor_con_impuestos * (currentVal - 1);
+			 importe.html(dollarUS.format(valor2));
+			 importe.attr({'data-importe':(valor2 == 0) ? precio_unitario_valor : valor2});
+			 importe.attr({'data-importe-con-impuestos':(valor3 == 0) ? precio_unitario_valor : valor3});
+			 
+			 importe.html(0);
+			 oTable
+				.row( $(this).parents('tr') )
+				.remove()
+				.draw(false);
+        }
+		if(Val  <= 0){
+			oTable
+				.row(tr)
+				.remove()
+				.draw(false);
+				console.log('goku');
+		}
+				var sub_total = 0;
+		var total = 0;
+		
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  sub_total += (isNaN($(this).attr("data-importe"))) ? 0 : parseFloat($(this).attr("data-importe"));
+});
+$('.importe').each(function(el, index){
+  //Asumiendo que es la columna 5 de cada fila la que quieres agregar a la sumatoria
+  total += (isNaN($(this).attr("data-importe-con-impuestos"))) ? 0 : parseInt($(this).attr("data-importe-con-impuestos"));
+});
+$(".total").html(dollarUS.format(total));
+$(".sub_total").html(dollarUS.format(sub_total));
+$(".impuestos").html(dollarUS.format(total - sub_total));
+
+    }
+
+    
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.12/purify.min.js" integrity="sha512-ydAbhhXY1K0RzNQnHtWGYABQQ8GaGPTUizQTpOeh6vHTiZREu/VcPiZoXdLUs9r+WhFOJa5Iaz3zVj5dVxEhBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js" integrity="sha512-NFUcDlm4V+a2sjPX7gREIXgCSFja9cHtKPOL1zj6QhnE0vcY695MODehqkaGYTLyL2wxe/wtr4Z49SvqXq12UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jsprintmanager@5.0.1/JSPrintManager.min.js"></script>
+<script> 
+	var contenido_total = "";
+
+	function Unidades(num){
+
+	  switch(num)
+	  {
+	    case 1: return "UN";
+	    case 2: return "DOS";
+	    case 3: return "TRES";
+	    case 4: return "CUATRO";
+	    case 5: return "CINCO";
+	    case 6: return "SEIS";
+	    case 7: return "SIETE";
+	    case 8: return "OCHO";
+	    case 9: return "NUEVE";
+	  }
+
+	  return "";
+	}
+
+	function Decenas(num){
+
+	  decena = Math.floor(num/10);
+	  unidad = num - (decena * 10);
+
+	  switch(decena)
+	  {
+	    case 1:   
+	      switch(unidad)
+	      {
+	        case 0: return "DIEZ";
+	        case 1: return "ONCE";
+	        case 2: return "DOCE";
+	        case 3: return "TRECE";
+	        case 4: return "CATORCE";
+	        case 5: return "QUINCE";
+	        default: return "DIECI" + Unidades(unidad);
+	      }
+	    case 2:
+	      switch(unidad)
+	      {
+	        case 0: return "VEINTE";
+	        default: return "VEINTI" + Unidades(unidad);
+	      }
+	    case 3: return DecenasY("TREINTA", unidad);
+	    case 4: return DecenasY("CUARENTA", unidad);
+	    case 5: return DecenasY("CINCUENTA", unidad);
+	    case 6: return DecenasY("SESENTA", unidad);
+	    case 7: return DecenasY("SETENTA", unidad);
+	    case 8: return DecenasY("OCHENTA", unidad);
+	    case 9: return DecenasY("NOVENTA", unidad);
+	    case 0: return Unidades(unidad);
+	  }
+	}//Unidades()
+
+	function DecenasY(strSin, numUnidades){
+	  if (numUnidades > 0)
+	    return strSin + " Y " + Unidades(numUnidades)
+
+	  return strSin;
+	}//DecenasY()
+
+	function Centenas(num){
+
+	  centenas = Math.floor(num / 100);
+	  decenas = num - (centenas * 100);
+
+	  switch(centenas)
+	  {
+	    case 1:
+	      if (decenas > 0)
+	        return "CIENTO " + Decenas(decenas);
+	      return "CIEN";
+	    case 2: return "DOSCIENTOS " + Decenas(decenas);
+	    case 3: return "TRESCIENTOS " + Decenas(decenas);
+	    case 4: return "CUATROCIENTOS " + Decenas(decenas);
+	    case 5: return "QUINIENTOS " + Decenas(decenas);
+	    case 6: return "SEISCIENTOS " + Decenas(decenas);
+	    case 7: return "SETECIENTOS " + Decenas(decenas);
+	    case 8: return "OCHOCIENTOS " + Decenas(decenas);
+	    case 9: return "NOVECIENTOS " + Decenas(decenas);
+	  }
+
+	  return Decenas(decenas);
+	}//Centenas()
+
+	function Seccion(num, divisor, strSingular, strPlural){
+	  cientos = Math.floor(num / divisor)
+	  resto = num - (cientos * divisor)
+
+	  letras = "";
+
+	  if (cientos > 0)
+	    if (cientos > 1)
+	      letras = Centenas(cientos) + " " + strPlural;
+	    else
+	      letras = strSingular;
+
+	  if (resto > 0)
+	    letras += "";
+
+	  return letras;
+	}//Seccion()
+
+	function Miles(num){
+	  divisor = 1000;
+	  cientos = Math.floor(num / divisor)
+	  resto = num - (cientos * divisor)
+
+	  strMiles = Seccion(num, divisor, "UN MIL", "MIL");
+	  strCentenas = Centenas(resto);
+
+	  if(strMiles == "")
+	    return strCentenas;
+
+	  return strMiles + " " + strCentenas;
+
+	  //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
+	}//Miles()
+
+	function Millones(num){
+	  divisor = 1000000;
+	  cientos = Math.floor(num / divisor)
+	  resto = num - (cientos * divisor)
+
+	  strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
+	  strMiles = Miles(resto);
+
+	  if(strMillones == "")
+	    return strMiles;
+
+	  return strMillones + " " + strMiles;
+
+	  //return Seccion(num, divisor, "UN MILLON", "MILLONES") + " " + Miles(resto);
+	}//Millones()
+
+	function NumeroALetras(num){
+	  var data = {
+	    numero: num,
+	    enteros: Math.floor(num),
+	    centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+	    letrasCentavos: "",
+	    letrasMonedaPlural: "PESOS",
+	    letrasMonedaSingular: "PESO"
+	  };
+
+	  if (data.centavos > 0)
+	    data.letrasCentavos = data.centavos + "/100 M.N";
+
+	  if(data.enteros == 0)
+	    return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+	  if (data.enteros == 1)
+	    return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+	  else
+	    return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+	}//NumeroALetras()
+
+	// function leerArchivo(e) {
+	// 	console.log("que es", e);
+	//   var archivo = e.target.files[0];
+	//   if (!archivo) {
+	//     return;
+	//   }
+	// var lector = new FileReader();
+	//  lector.onload = function(e) {
+	// var contenidos = JSON.parse(e.target.result);
+	var numAtCard_global = "";
+	function pinta_ticket(contenidos){
+		contenido_total = "";
+		var tipo_entrega = "";
+		//console.log("solo mandamos esto_", contenidos.DocumentLines[0].WarehouseCode);
+		//mostrarContenido(contenidos);
+		if(contenidos.DocumentLines[0].WarehouseCode == '200'){
+			tipo_entrega = "DOMICILIO";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '200.2'){
+			tipo_entrega = "PISO";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '02'){
+			tipo_entrega = "GUADALAJARA";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '03'){
+			tipo_entrega = "PUEBLA";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '04'){
+			tipo_entrega = "MONTERREY";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '05'){
+			tipo_entrega = "QUERETARO";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '06'){
+			tipo_entrega = "TIJUANA";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '09'){
+			tipo_entrega = "ZONA ROSA";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '10'){
+			tipo_entrega = "XALAPA";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '11'){
+			tipo_entrega = "VIADUCTO";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '12'){
+			tipo_entrega = "ZAPOPAN";
+		}else if(contenidos.DocumentLines[0].WarehouseCode == '14'){
+			tipo_entrega = "LEON";
+		}else {
+			tipo_entrega = "TOLUCA";
+		}
+		numAtCard_global = contenidos.NumAtCard;
+		if(!carta){
+		
+		contenido_total += "<div id='id_pdf' style='width: 68mm;word-break: break-word;margin:auto;font-family: Poppins;'>"+
+				"<h3 style='font-size: 1.3em;margin-bottom: 0%;text-align: center;font-weight: 700;'>ETRUSCA COMERCIAL S.A DE C.V</h3>"+
+				"<h3 style='margin-top:1%;text-align: center;font-size: 1rem;'>RFC: ECO951027E8A</h3>"+
+				"<div style='display: flex;'>"+
+					"<div id='cot_fech_val_ref' style='font-size: .9rem; width: 100%; text-align: left; padding-top: 2%;height: 70px;'>"+
+						"<label id='DocNum' style='margin-bottom: -0.5rem; display: block;font-weight: 400 !important;'>Cotización No."+ contenidos.DocNum+"</label>"+
+						"<label id='NumAtCard' style='margin-bottom: -0.5rem; display: block;font-weight: 700 !important;'>Referencia: "+contenidos.NumAtCard+"</label>"+
+						"<label id='CreationDate' style='margin-bottom: -0.5rem; display: block;font-weight: 400 !important;'>Fecha: "+ contenidos.CreationDate+"</label>"+
+						"<label id='DocDueDate' style='margin-bottom: -0.5rem; display: block;font-weight: 400 !important;'>Válido hasta: "+contenidos.DocDueDate+"</label>"+
+					"</div>"+
+				"</div>"+
+				"<canvas style='width:100%;' id='barcode'></canvas>"+
+				"<h5 style='margin-top:3%; margin-bottom: 0%; font-weight: inherit; font-size: .8rem;font-weight: 500 !important;'>Expedido en: EXPO WTC</h5>"+
+				//"<h5 id='Address' style='margin-top:0%; margin-bottom:0%; font-weight:600; font-size:.8rem; word-break:break-word;'>"+contenidos.Address+"</h5><br>"+
+				"<label id='CarCode' style='font-size: .8rem;display: block;margin-bottom: -.2rem;font-weight: 500 !important;'>No. de Cliente: "+contenidos.CardCode+"</label>"+
+				"<label id='CardName' style='font-size: .8rem; font-weight: 500;display: block;margin-bottom: -.2rem;'>Nombre: "+contenidos.CardName+"</label>"+
+				"<label id='FederalTaxID' style='font-size: .8rem; font-weight: 500;display: block;margin-bottom: 1rem;'>RFC: "+contenidos.FederalTaxID+"</label>"+
+				"<label style='font-size: .7rem;font-weight: 600;margin-bottom:0;'>Descripción</label>"+
+				"<div id='haders_table' style='font-size: .7rem;display: inline-flex;width: 100%;'>"+
+					"<label style='width: 15%; font-weight: 500;background-color: black;color:white;'>Cant.</label><label style='width: 20%; font-weight: 500;background-color: black;color:white;'>UM</label><label style='width: 22%; font-weight: 500;background-color: black;color:white;'>Clave</label><label style='width: 20%; font-weight: 500;background-color: black;color:white;'>P/U*</label><label style='width: 20%; font-weight: 500;background-color: black;color:white;'>Desc</label><label style='width: 22%; font-weight: 500;background-color: black;color:white;'>Importe</label>"+
+				"</div>";
+		let text = "";
+		var subtotal = 0;
+		var formato_cantidad = new Intl.NumberFormat('en-US');
+		//console.log(contenidos.DocumentLines);
+		contenidos.DocumentLines.forEach(myFunction);
+		function myFunction(item) {
+				var iva_solo = (item.DocumentLineAdditionalExpenses.length == 1 ? item.DocumentLineAdditionalExpenses[0].LineTotal : 0 );
+				//console.log("cantidad: ",item.Quantity);
+				//console.log("precio con iva: ",item.Price + iva_solo);
+				//console.log("total multiplicado : ",(item.Price + iva_solo ) * item.Quantity );
+			  text += "<label style='font-size: .65rem; font-weight: bold;display: inline-table;margin-bottom: 0;'>" + item.ItemDescription  + "</label>"+
+			  "<div style='display: flex; font-size: .65rem'>"+
+				"<label style='width: 15%; font-weight: 500;'>" + item.Quantity + "</label>"+
+				"<label style='width: 20%; font-weight: 500;'>" + item.MeasureUnit + "</label>"+
+				"<label style='width: 22%; font-weight: 500;'>" + item.ItemCode + "</label>"+
+				"<label style='width: 20%; font-weight: 500;'>" + (formato_cantidad.format(parseFloat((item.Price + iva_solo)).toFixed(2))) + "</label>"+
+				"<label style='width: 20%; font-weight: 500;'>" +  item.DiscountPercent+ "%</label>"+
+				
+				"<label style='width: 22%; font-weight: 500;'>" + (formato_cantidad.format(parseFloat(((item.Price + iva_solo) * item.Quantity)).toFixed(2))) +"</label>"+
+				"</div>"; 
+			  subtotal += (item.Price + iva_solo) * item.Quantity;
+		}
+		contenido_total += "<div style='width: 68mm;word-break: break-word;margin:auto;font-family: Poppins;margin-top: -4%;' id='show_items'>"+text+"</div>"+
+				"<div style='text-align: right;font-size: .7rem;width: 68mm;word-break: break-word;margin:auto;font-family: Poppins;'>"+
+					"<label id='subtotal' style='text-align: right;margin-bottom: 0;display: block;font-weight: 600;'>Subtotal:  "+ (formato_cantidad.format(parseFloat(subtotal).toFixed(2))) +"  "+contenidos.DocCurrency+"</label>"+
+					"<label id='impuestos' style='text-align: right;margin-bottom: 0;display: block;font-weight: 600;'>Impuestos:  "+ (formato_cantidad.format(parseFloat((contenidos.VatSum)).toFixed(2))) +"  "+contenidos.DocCurrency+"</label>"+
+					"<label id='total' style='text-align: right;font-weight: 400;'><b>Total:  " + (formato_cantidad.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2))) + "  " + contenidos.DocCurrency + "</b></label>"+
+				"</div>"+
+				"<div style='font-size: .7rem;width: 68mm;word-break: break-word;margin: auto;font-family: Poppins;'>"+
+					"<label style='font-size: .7rem;font-weight: 500;margin-bottom: 0;'>Importe con letra:</label><br>"+
+					"<label id='importeLetra' style='font-size: .7rem;display: block;font-weight: 600;'>"+NumeroALetras(parseFloat((contenidos.VatSum + subtotal)).toFixed(2))+"</label>"+
+					"<label style='font-size: .7rem;font-weight: bold;'>Observaciones:</label><br>"+
+					"<label style='font-size: .7rem;font-weight: 600;display: block;line-height: 1.2;text-align: justify;'>"+contenidos.Comments+"</label>"+
+					
+					"<label style='font-size: .7rem;font-weight: 600;display: block;line-height: 1.2;text-align: justify;'>15% de descuento en productos que NO tienen promoción. Presenta está cotización en la sucursal. Válido hasta 30 días después de su emisión.</label><br>"+
+					
+					"<div class='html2pdf__page-break' id='qr_' style='text-align: center;'></div>"+
+				"</div>"+
+		"</div>"+
+		"<div class='html2pdf__page-break'>"+
+		"</div>";
+		 
+		$(".sub_total").html((formato_cantidad.format(parseFloat(subtotal).toFixed(2))));
+		$(".sub_total").html(dollarUS.format(parseFloat(subtotal).toFixed(2)));
+		$(".impuestos").html((formato_cantidad.format(parseFloat((contenidos.VatSum)).toFixed(2))));
+		$(".impuestos").html(dollarUS.format(parseFloat((contenidos.VatSum)).toFixed(2)));		
+		$(".total").html((formato_cantidad.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2))));
+		$(".total").html(dollarUS.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2)));
+		
+		$("#ticket_body").html(contenido_total);
+		var cadena = contenidos.NumAtCard;
+		//cadena = cadena.toUpperCase();
+		cadena = cadena.toLowerCase();
+		//JsBarcode("#barcode", contenidos.NumAtCard, {
+		JsBarcode("#barcode", cadena, {
+		  width: 1.5,
+		  height: 25,
+		  displayValue: false,
+		  marginTop: 8,
+		  marginBottom: 0.1
+		});
+		
+		jQuery("#qr_").qrcode({
+		  //render:"table"
+		  width: 128,
+		  height: 128,
+		  text: "https://qr-generator.cafeetrusca.com/qrcode/track/74"
+		});	
+		
+		}else{
+			contenido_total += ' <div class="invoice-header"> <div class="row"> <div class="col-xs-4"> <div class="media"> <div class="media-left"> <img class="media-object logo" src="https://lista-de-precios.cafeetrusca.com/img/Logo-Cafe-Etrusca.png" /> </div> <ul class="media-body list-unstyled"> <li><strong></strong></li> <li></li> <li></li> <li></li> </ul> </div> </div> <div class="col-xs-4"> <ul class="media-body list-unstyled text-center"> <li><strong>ETRUSCA COMERCIAL S.A. DE C.V. </strong></li> <li>ECO951027E8A</li> <li>AV. NORTE 35 N° 908-82, COL. INDUSTRIAL VALLEJO C.P. 02300, AZCAPOTZALCO,</li> <li>CIUDAD DE MÉXICO, MX.</li> </ul> </div> <div class="col-xs-4"> <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">COTIZACIÓN</h3> </div> <h4 class="text-muted">No.'+ contenidos.DocNum+'</h4> <h4 class="text-muted">Fecha:' + contenidos.CreationDate +'</h4> <h4 class="text-muted">Válido hasta: 2023-03-04</h4> </div> </div> </div> </div>';
+			contenido_total += ' <div class="row"> <div class="col-xs-4"> <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title"> RECEPTOR</h3> </div> <div class="panel-body"> <dl class="dl-horizontal"> <dt> ' +contenidos.CardCode+' '+contenidos.CardName+'</dt>  <dt>'+contenidos.FederalTaxID+'</dt>  </div> </div> </div> <div class="col-xs-4"> <h1> <small></small></h1>  <h4 class="text-muted"></h4><canvas style="width:100%;margin-top: -7% !important;" id="barcode"></canva> </div> <div class="col-xs-4"> <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">INFORMACIÓN ADICIONAL</h3> </div> <div class="panel-body"> <dl class="dl-horizontal"> <dt>Referencia: '+contenidos.NumAtCard+'</dt> <dt>Vendedor: '+contenidos.SalesPersonCode+ '-'+ SalesPersonName+ '  </dt> <dd></dd> <dt>&nbsp;</dt> <dd>&nbsp;</dd> </div> </div> </div> </div>';
+			contenido_total += ' <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">Producto(s)</h3> </div> ';
+			contenido_total += ' <table class="table table-bordered table-condensed" style="font-size: 1em !important;"> ';
+			contenido_total += ' <thead> <tr> <th>Cantidad</th> <th>Unidad</th> <th>Código</th> <th>Nombre</th>  <th class="text-center colfix">Precio unitario</th> <th class="text-center colfix">% Descuento</th> <th class="text-center colfix">Importe</th> </tr> </thead> ';
+			let text = "";
+		var subtotal = 0;
+		var formato_cantidad = new Intl.NumberFormat('en-US');
+		//console.log(contenidos.DocumentLines);
+		contenidos.DocumentLines.forEach(myFunction);
+		function myFunction(item) {
+				var iva_solo = (item.DocumentLineAdditionalExpenses.length == 1 ? item.DocumentLineAdditionalExpenses[0].LineTotal : 0 );
+				//console.log("cantidad: ",item.Quantity);
+				//console.log("precio con iva: ",item.Price + iva_solo);
+				//console.log("total multiplicado : ",(item.Price + iva_solo ) * item.Quantity );
+			
+				contenido_total += '  <tr style="font-size: 0.85em !important;"> <td class="text-center"> <span class="mono">'+ item.Quantity +'</span> </td> <td class="text-center"> <span class="mono">'+ item.MeasureUnit +'</span> </td> <td class="text-center"> <span class="mono">' + item.ItemCode + '</span> </td> <td> <span class="mono">'+ item.ItemDescription  +'</span> </td>  <td class="text-right"> <span class="mono">' + (formato_cantidad.format(parseFloat((item.Price + iva_solo)).toFixed(2))) +'</span> </td> <td class="text-right"> <span class="mono">'+item.DiscountPercent+'%</span> </td> <td class="text-right"> <span class="mono">'+ item.LineTotal +'</span> <br> </td> </tr>';
+			
+			  subtotal += (item.Price + iva_solo) * item.Quantity;
+		}
+			
+			 contenido_total += ' <tr style="font-size: 0.85em !important;"> <td class="text-right"colspan="5"> </td> <td class="text-right" > <strong class="text-muted"> <strong>Subtotal</strong></small> </td> <td class="text-right"> <span class="mono">' + (formato_cantidad.format(parseFloat(subtotal).toFixed(2))) +'  '+contenidos.DocCurrency+ '</span> <br> <!--<small class="text-muted">IVA 20%</small>--> </td> </tr>';
+			
+			contenido_total += ' <tr style="font-size: 0.85em !important;"> <td class="text-right"colspan="5"> </td> <td class="text-right" > <strong class="text-muted"> <strong>Impuestos</strong></small> </td> <td class="text-right"> <span class="mono">' + (formato_cantidad.format(parseFloat((contenidos.VatSum)).toFixed(2))) +'  '+contenidos.DocCurrency+ '</span> <br> <!--<small class="text-muted">IVA 20%</small>--> </td> </tr>';
+			
+			contenido_total += ' <tr style="font-size: 0.85em !important;"> <td class="text-right"colspan="5"> </td> <td class="text-right" > <strong class="text-muted"> <strong>Total</strong></small> </td> <td class="text-right"> <span class="mono">' + (formato_cantidad.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2))) + '  ' + contenidos.DocCurrency + '</span> <br> <!--<small class="text-muted">IVA 20%</small>--> </td> </tr>';
+			contenido_total += ' </table>';
+			
+				contenido_total += '<div class="row"> <div class="col-xs-12"> <div class="panel panel-default"> <div class="panel-body"> <i>Cometarios / Notas</i> <hr style="margin:3px 0 5px" />15% de descuento en productos que NO tienen promoción. Presenta está cotización en la sucursal. Válido hasta 30 días después de su emisión. </div> </div> </div> </div>';
+				contenido_total += '<div/>';
+		
+		
+		 
+		$(".sub_total").html((formato_cantidad.format(parseFloat(subtotal).toFixed(2))));
+		$(".sub_total").html(dollarUS.format(parseFloat(subtotal).toFixed(2)));
+		$(".impuestos").html((formato_cantidad.format(parseFloat((contenidos.VatSum)).toFixed(2))));
+		$(".impuestos").html(dollarUS.format(parseFloat((contenidos.VatSum)).toFixed(2)));		
+		$(".total").html((formato_cantidad.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2))));
+		$(".total").html(dollarUS.format(parseFloat((contenidos.VatSum + subtotal)).toFixed(2)));
+		
+		$("#ticket_body").addClass('invoice container');
+		$("#ticket_body").html(contenido_total);
+		var cadena = contenidos.NumAtCard;
+		//cadena = cadena.toUpperCase();
+		cadena = cadena.toLowerCase();
+		//JsBarcode("#barcode", contenidos.NumAtCard, {
+			$("#barcode").replaceWith('<svg id="barcode" style="width:100%;margin-top: -7% !important;" />');
+		JsBarcode("#barcode", cadena, {
+		  width: 1.5,
+		  height: 25,
+		  displayValue: false,
+		  marginTop: 8,
+		  marginBottom: 0.1
+		});
+		
+		var svg = $("#barcode").clone();
+
+var xml = new XMLSerializer().serializeToString(svg[0]);
+
+var base64 = 'data:image/svg+xml;base64,' + btoa(xml);
+$("#barcode").replaceWith('<image id="image" style="width:100%;margin-top: -7% !important;" />');
+var img = $("#image")[0];
+img.src = base64;
+		jQuery("#qr_").qrcode({
+		  //render:"table"
+		  width: 128,
+		  height: 128,
+		  text: "https://qr-generator.cafeetrusca.com/qrcode/track/74"
+		});
+var restorepage = $('body').html();
+			var printcontent = $('#ticket_body').clone().removeClass('modal-body');
+			$('body').empty().html(printcontent);
+			setTimeout(function(){
+			window.print();	
+			}, 2000);
+			
+			setTimeout(function(){
+			$('body').html(restorepage);	
+			var table = $('#publico').DataTable();
+ 
+table
+    .clear()
+    .draw();
+	$(".sub_total").html("$0.00");
+	$(".impuestos").html("$0.00");
+	$(".total").html("$0.00");
+	select_client[0].selectize.enable();
+	select_client[0].selectize.clear();
+	select_articulo[0].selectize.clear();
+	select_entrega[0].selectize.clear();
+	select_entrega[0].selectize.setValue('C-00001');
+	location.reload();
+			}, 3000);
+			
+				console.log( "ready!" );	
+				
+		}
+		    
+
+	}
+	
+	window.jsPDF = window.jspdf.jsPDF
+	
+	$("#genera_pdf").click(function(){
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		//var he = Math.floor($("#id_pdf").height() * 0.264583  + (($("#id_pdf").height() < 700) ? ($("#id_pdf").height() /100) : $("#id_pdf").height() /10)  );//* 0.264583 + 5
+		var he = Math.floor($("#id_pdf").height() * 0.264583  +  5  );
+		var random = numAtCard_global;
+		var divHeight = $('#id_pdf').height();
+		var divWidth = $('#id_pdf').width();
+		var ratio = divHeight / divWidth;
+		//const $elementoParaConvertir = window.document.getElementById("id_pdf").innerHTML; // <-- Aquí puedes elegir cualquier elemento del DOM
+		var element = document.getElementById('id_pdf');
+		var opt = {
+		  margin:        [ 1, 1,1, 1 ],
+		  filename:     'myfile_'+random+'.pdf',
+		  image:        { type: 'png', quality: 0.98 },
+		  html2canvas:  { scale: 2 },
+		  jsPDF:        { orientation: 'p',
+						 unit: 'mm',
+						 format: [70,he],// Utilizar el ancho del contenedor y altura automática
+						 putOnlyUsedFonts:true,
+						 floatPrecision: 16,
+						 verticalOffset: 0 // Alineación superior (0 píxeles de margen vertical)						 
+						},
+		  pagebreak: { mode: 'legacy', after: '#qr_' }
+
+		};
+
+		// New Promise-based usage:
+		html2pdf().set(opt).from(element).save();
+		setTimeout(function(){
+			location.reload();
+		},6000);
+	});
+
+	$("#genera_vista").on('click',function(){
+
+	  //var _categoria_ = $(this).attr("data-categoria");
+	  var contenido = contenido_total;
+		//_+"/"+_categoria_
+		$.ajaxSetup({
+		  headers: {
+		  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		  }
+		});
+      $.ajax({
+		url: "/pdf",
+		data: {"contenido" : contenido},
+		type: 'POST',
+		success: function (data,status,xhr) {
+			//console.log("data: ", data);	
+			console.log( data );
+		},
+		error: function (jqXHR, exception) {
+			console.log(exception);
+		}
+	  });
+		//_+"/"+_categoria_
+	});
+	
+	
+	//function envia_pdf(response){
+	//	console.log(response);
+	//	window.open("{{route("genera_pdf")}}"+"/"+response, "_blank");
+	//}
+	// };
+	// lector.readAsText(archivo);
+	// }
+
+	 function mostrarContenido(contenidos) {
+	  var elemento = document.getElementById('contenido-archivo');
+	   elemento.innerHTML = contenidos;
+	 }
+if(UserId == 105 || UserId == 75 || UserId == 1 ){
+	//carta = true;
+}
+	// document.getElementById('file-inp		ut')
+	//   .addEventListener('change', leerArchivo, false);
+</script>
