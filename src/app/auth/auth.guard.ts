@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
     canActivate(): boolean {
-        if (this.authService.isAuthenticated()) {
+        if (this.authService.isAuthenticatedUser()) {
             // El usuario tiene un token válido, permitir el acceso a la ruta protegida
             return true;
         } else {

@@ -6,9 +6,10 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private token: string | null = null;
+  private authToken: string | null = null;
+  private isAuthenticated: boolean = false;
 
-  constructor(private http: HttpClient,  private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   registerUser(email: string, password: string) {
     const requestBody = {
@@ -34,20 +35,28 @@ export class AuthService {
       })
       .then(data => {
         // Guardar el token en una variable
-        const token = data.token;
-        console.log('Token:', token);
+        this.authToken = data.token;
+        console.log('Token:', this.authToken);
 
         //Realizar la redirección a la ruta deseada
         this.router.navigate(['/dashboard']); // Reemplaza '/dashboard' con la ruta a la que quieres redirigir
 
-      //Continuar con el flujo del programa
+        //Actualizar el estado de autenticación
+        this.isAuthenticated = true;
       })
       .catch(error => {
         console.error('Error en la solicitud', error);
       });
   }
-  isAuthenticated(): boolean {
-    return !!this.token && !this.tokenExpired();
+
+  isAuthenticatedUser(): boolean {
+    return this.isAuthenticated;
+  }
+
+  logout() {
+    this.authToken = null;
+    this.isAuthenticated = false;
+    // Realiza cualquier otra limpieza necesaria, como eliminar datos del usuario en el almacenamiento local, etc.
   }
 
   private tokenExpired(): boolean {
@@ -55,5 +64,4 @@ export class AuthService {
     // ...
     return false; // Retorna true si el token ha expirado, false en caso contrario
   }
-
 }
