@@ -20,6 +20,7 @@ import { BoletinFronterizoComponent } from './comercial/lista-de-precios/boletin
 import { RefaccionDistribuidorComponent } from './comercial/lista-de-precios/refaccion-distribuidor/refaccion-distribuidor.component';
 import { FronterizoComponent } from './comercial/lista-de-precios/fronterizo/fronterizo.component';
 import { PerfilComponent } from './users/perfil/perfil.component';
+import { EducacionComponent } from './educacion/educacion.component';
 
 
 
@@ -42,7 +43,8 @@ import { PerfilComponent } from './users/perfil/perfil.component';
     BoletinFronterizoComponent,
     RefaccionDistribuidorComponent,
     FronterizoComponent,
-    PerfilComponent
+    PerfilComponent,
+    EducacionComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { PerfilComponent } from './users/perfil/perfil.component';
     ComercialComponent,
     UsersComponent,
     DirectorioDeExtensionesComponent,
+    EducacionComponent
   ]
 })
 export class PagesModule { }

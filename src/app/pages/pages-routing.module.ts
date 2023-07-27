@@ -21,6 +21,7 @@ import { RefaccionDistribuidorComponent } from './comercial/lista-de-precios/ref
 import { FronterizoComponent } from './comercial/lista-de-precios/fronterizo/fronterizo.component';
 import { PublicoComponent } from './comercial/lista-de-precios/publico/publico.component';
 import { PerfilComponent } from './users/perfil/perfil.component';
+import { EducacionComponent } from './educacion/educacion.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
       {path: 'e-commerce', component: ECommerceComponent},
       {path: '**', redirectTo: 'comercial'}
     ]
+  },
+  {
+    path: 'educacion', component: EducacionComponent
   },
   {path: 'users', component: UsersComponent,
    children:[
